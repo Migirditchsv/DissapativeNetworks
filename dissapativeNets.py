@@ -32,54 +32,102 @@ big_num = 10**8
 popultion_limit = 10**5
 time_limit = 10**5
 ## Experimental parameters
-produce_growth_ratio = 1.12
-consumer_growth_ratio = 1.10
 
-# SVM 01/27: Making a big design decision here: When declaring nodes, special things
-#must be done when defining nodes with unhashable objects describing them. I 
-#don't think we'll need anything other than a set of scalars to describe
-#each node, so I will be assuming that all node objects are hashable. 
+#rescource volume regeneration and metabolism controls
+# Regen and metabolism are seperated because we'll probably want to look at non
+#-linear metabolic/regen scaling effects at some future point. 
+source_initial_volume = 10**(5)
+producer_initial_volume = 1.0
+source_regen_ratio = 0.0
+produce_regen_ratio = 0.0
+consumer_regen_ratio = 0.0
+source_metabolic_rate = 0.0
+producer_metabolic_rate = 0.1
+consumer_metabolic_rate = 0.1
+
+#niche controls
+niche_creep_rate = 0.1 # rate of increase in niche dist. mean per # of nodes
+
+#Global indicies and trakcers
+max_niche_score = 0.0
+niche_array = []#useful for on the fly statistics. 
+
+
+# SVM 01/27: All node objects must be hashable for nice networkx features. 
 
 class Node:
-    
     # Class Attributes
     role = 'node'
     
     # Initializer & attributes
-    def __init__(self, node_index, init_volume,
-                 niche_score, niche_lb, niche_ub ):
+    def __init__(self, node_index ):
+        self.targets = []
         self.node_index = node_index
-        self.volume = init_volume
-        self.niche_score = niche_score
-        self.niche_lb = niche_lb
-        self.niche_ub = niche_ub
+        self.volume = 0
+        self.niche_score = -1
+        self.niche_lb, self.niche_ub = (-1,-1)
+        self.regen_ratio = 0
+        self.metabolic_ratio = 0
+        self.consumption_ratio = 0
     
     # Instance Fxns
-    def set_volume(self, new_volume):
-        self.volume = new_volume
-    def set_niche_score(self, new_niche_score):
-        self.niche_score = new_niche_score
-    def set_niche_lb(self, new_niche_lb):
-        self.niche_lb = new_niche_lb
-    def set_niche_ub(self, new_niche_ub):
-        self.niche_ub = new_niche_ub
-    
-class Rescource(Node):
-    
-    # Class Attributes
-    role = 'rescource'
+    def set_niche_score(self, node_index):
+        global max_niche_score
+        niche_score = node_index * niche_creep_rate
+        if (niche_score>max_niche_score):
+            max_niche_score=niche_score
+        return( niche_score )
+    def rand_niche_bounds(self ):
+        global max_niche_score
+        mu = self.niche_score
+        sigma = max_niche_score
+        ub = np.random.uniform(0,max_niche_score)
+        lb = np.random.uniform(0,ub)
+        return(lb,ub)
 
-    # Init
-    def __init__(self,regen_rate):
-        self.niche_score = 0.0
-        self.niche_lb = 0.0
-        self.niche_ub = big_num
-        self.regen_rate = regen_rate
+        
 
-# Useful Functions
+
+### Useful Functions
+def create_producer(node_index):
+    new_producer = Node(node_index)
+    new_producer.volume = producer_initial_volume
+    new_producer.set_niche_score(node_index)
+    new_producer.niche_lb,new_producer.niche_ub=new_producer.rand_niche_bounds()
+    new_producer.metabolic_ratio = producer_metabolic_rate
+    new_producer.consumption_ratio = np.random.uniform(0,1)
+    niche_array.append(new_producer.niche_score)
+    return( new_producer )
+    
 def node_update(node_name):
     return(0)
     
     
+    
 # Init the world
-G = nx.MultiDiGraph
+G = nx.DiGraph()
+
+# Create source node
+source = Node(0)
+source.role="Source"
+source.volume = source_initial_volume
+source.niche_score = 0.0
+niche_array.append[0.0]
+G.add_node(source, source_attributes)
+
+run_condition=1
+t=0
+while (run_condition):
+
+    # Update State Variables
+    t+=1
+    population = G.size
+    
+    # run through and-listed run conditions
+    run_condition *= t<time_limit 
+    run_condition *= population < popultion_limit
+    run_condition *= population > 0 
+    
+    
+
+
