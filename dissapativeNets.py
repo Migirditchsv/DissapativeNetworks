@@ -147,7 +147,8 @@ for t in range(1, producer_seed_number):
 
 ### GRIND
 run_condition=1
-t=producer_seed_number
+t=0
+index_max = producer_seed_number
 while (run_condition):
 
     # Update State Variables
@@ -159,7 +160,7 @@ while (run_condition):
     run_condition *= t<time_limit 
     run_condition *= population_size < popultion_limit
     run_condition *= population_size > 0 
-    print( "TIME:", t,"| POPULATION:", population)
+    print( "TIME:", t,"| POPULATION:", population_size)
     
     for node in G.nodes:
         
@@ -172,6 +173,7 @@ while (run_condition):
         node_volume = G.node[node]["volume"]
         node_quota = G.node[node]["consumption_ratio"] * node_volume
         node_metabolism = G.node[node]["metabolic_ratio"] * node_volume
+            
         
         # Die if starved
         if (node_volume<=DEATH_LIMIT):
@@ -204,8 +206,13 @@ while (run_condition):
     
     # Reap nodes
     run_kill_list()
-            
-        # Spawn
+    # spawn Nodes
+    spawn_number = m.ceil(population_size*producer_spawn_ratio)
+    for spawn in range(0,spawn_number):
+        index_max +=1
+        create_producer(index_max)
+        find_target(index_max)        
+
     
     
 
