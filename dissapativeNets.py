@@ -30,7 +30,7 @@ epsilon = 10**-8
 big_num = 10**8
 ## Safety triggers
 popultion_limit = 10**5
-time_limit = 10**5
+time_limit = 100**5
 ## Experimental parameters
 
 #rescource volume regeneration and metabolism controls
@@ -44,6 +44,7 @@ consumer_regen_ratio = 0.0
 source_metabolic_rate = 0.0
 producer_metabolic_rate = 0.1
 consumer_metabolic_rate = 0.1
+DEATH_LIMIT = 0.01
 
 #niche controls
 niche_creep_rate = 0.1 # rate of increase in niche dist. mean per # of nodes
@@ -52,32 +53,15 @@ niche_creep_rate = 0.1 # rate of increase in niche dist. mean per # of nodes
 consumer_delay_time=100#How many time steps to wait until consumers appear
 producer_spawn_ratio=1.1
 consumer_spawn_ratio=1.2
+producer_seed_number = 5
 
 #Global indicies and trakcers
 max_niche_score = 0.0
 niche_array = []#useful for on the fly statistics. 
-
+kill_list = []
 
 # SVM 01/27: All node objects must be hashable for nice networkx features. 
 
-class Node:
-    # Class Attributes
-    role = 'node'
-    
-    # Initializer & attributes
-    def __init__(self, node_index ):
-        self.attributes= {
-        "targets":[],
-        "node_index" : node_index,
-        "volume" : 0,
-        "niche_score" : -1,
-        "niche_lb" : -1,
-        "niche_ub" : -1,
-        "regen_ratio" : 0,
-        "metabolic_ratio" : 0,
-        "consumption_ratio" : 0
-        }
-        
 ### Useful Functions
 def set_niche_score(node_index):
     global max_niche_score
@@ -91,7 +75,8 @@ def create_source(node_index):
     #init node
     G.add_node(node_index)
     #set properties
-    G.nodes[node_index]["role"]="Source"
+    G.nodes[node_index]["node_index"]=node_index
+    G.nodes[node_index]['role']="Source"
     G.nodes[node_index]["volume"]= source_initial_volume
     G.nodes[node_index]["niche_score"]= 0
     G.nodes[node_index]["niche_lb"]= 0
@@ -104,11 +89,13 @@ def create_producer(node_index):
     #init node
     G.add_node(node_index)
     #set properties
+    G.nodes[node_index]["node_index"]=node_index
     G.nodes[node_index]["role"]="Producer"
     G.nodes[node_index]["volume"]= producer_initial_volume
     G.nodes[node_index]["niche_score"]= set_niche_score( node_index )
+    ub = np.random.uniform(0,max_niche_score)
+    G.nodes[node_index]["niche_ub"]= ub
     G.nodes[node_index]["niche_lb"]= np.random.uniform(0,ub)
-    G.nodes[node_index]["niche_ub"]= np.random.uniform(0,max_niche_score)
     G.nodes[node_index]["metabolic_ratio"]= producer_metabolic_rate
     G.nodes[node_index]["consumption_ratio"]= np.random.uniform(0,1)
     G.nodes[node_index]["regen_ratio"]= 0.0
@@ -116,29 +103,51 @@ def create_producer(node_index):
     
 
 
-def find_targets( node_index ):
-    ub = 0
+def find_target( node_index ):
+    ub = G.node[node_index]["niche_ub"]
+    lb = G.node[node_index]["niche_lb"]
+    best_score = 0.0
+    best = -1
+    for target in G.nodes:
+        if target != node_index:
+            target_niche_score = G.node[target]["niche_score"]
+            if ( lb<=target_niche_score<=ub ):
+                target_volume = G.node[target]["volume"]
+                target_degree = G.degree(target)
+                target_score = target_volume / max(1,target_degree)
+                if ( target_score > best_score ):
+                    best_score = target_score
+                    best = target
+    if (best > 0):
+        return( best )
+                    
     
 def kill_node( node_index ):
-    node_index = str( node_index )
-    node = G.node( node_index )
-    node.attributes["niche_score"]
+    global niche_array
+    niche_score = G.node[node_index]["niche_score"]
     G.remove_node( node_index )
     niche_array.remove(niche_score)
     
-    
+def run_kill_list():
+    global kill_list
+    for k in kill_list:
+        kill_node(k)
+    kill_list = []
     
     
 # Init the world
 G = nx.DiGraph()
 
-# Create source node
+# Create source node & some seed producers
 create_source(0)
-
+for t in range(1, producer_seed_number):
+    create_producer(t)
+    #force into source niche range
+    G.node[t]["niche_lb"]=0.0
 
 ### GRIND
 run_condition=1
-t=0
+t=producer_seed_number
 while (run_condition):
 
     # Update State Variables
@@ -155,30 +164,46 @@ while (run_condition):
     for node in G.nodes:
         
         node_index = G.node[node]["node_index"]
-        niche_score = node.attributes["niche_score"]
+        niche_score = G.node[node]["niche_score"]
         
         targets = [ t for t in G.neighbors(node) ]
         target_number = len( targets )
         
-        node_volume = node.attributes["volume"]
-        node_quota = node.attributes["consumption_ratio"] * node_volume
-        node_metabolism = node.attributes["metabolic_ratio"] * node_volume
+        node_volume = G.node[node]["volume"]
+        node_quota = G.node[node]["consumption_ratio"] * node_volume
+        node_metabolism = G.node[node]["metabolic_ratio"] * node_volume
         
         # Die if starved
-        if (node_metabolism>=node_volume):
-            kill_node( node_index )
+        if (node_volume<=DEATH_LIMIT):
+            kill_list.append(node_index)
             continue
         
         # Hunger
-        per_capita_quota = node_volume / target_number
-        node_volume-=node_metabolism
-        intake = 0.0
-        for target in targets:
-            target_index = target.attributes["node_index"]
-            target_volume = target.attributes["volume"]
-            if per_capita_quota >= target_volume:
-                intake += target_volume
-                kill_node( target_index )
+        if (target_number>0):
+            print("Hungering", target_number)
+            per_capita_quota = node_volume / target_number
+            node_volume-=node_metabolism
+            intake = 0.0
+            for target in targets:
+                target_index = G.node[target]["node_index"]
+                target_volume = G.node[target]["volume"]
+                if (per_capita_quota >= target_volume):
+                    intake += target_volume
+                    kill_list.append( target_index )
+                else:
+                    intake += per_capita_quota
+                    target_volume += -per_capita_quota
+                    G.node[target]["volume"] = target_volume
+            # eat gathered rescource
+            G.node[node]["volume"] += intake
+            # serch for new targets if under quota
+            if (intake < node_quota):
+                find_target( node_index )
+        else: find_target(node_index)
+        G.node[node_index]["volume"] -= node_metabolism
+    
+    # Reap nodes
+    run_kill_list()
             
         # Spawn
     
