@@ -30,29 +30,29 @@ epsilon = 10**-8
 big_num = 10**8
 ## Safety triggers
 popultion_limit = 10**5
-time_limit = 100**5
+time_limit = 100#**5
 ## Experimental parameters
 
 #rescource volume regeneration and metabolism controls
 # Regen and metabolism are seperated because we'll probably want to look at non
 #-linear metabolic/regen scaling effects at some future point. 
-source_initial_volume = 10**(5)
+source_initial_volume = 10#**(5)
 producer_initial_volume = 1.0
 source_regen_ratio = 0.0
 produce_regen_ratio = 0.0
 consumer_regen_ratio = 0.0
 source_metabolic_rate = 0.0
-producer_metabolic_rate = 0.1
+producer_metabolic_rate = 0.01
 consumer_metabolic_rate = 0.1
-DEATH_LIMIT = 0.01
+DEATH_LIMIT = 0.4
 
 #niche controls
 niche_creep_rate = 0.1 # rate of increase in niche dist. mean per # of nodes
 
 #Network Growth Controls
 consumer_delay_time=100#How many time steps to wait until consumers appear
-producer_spawn_ratio=1.1
-consumer_spawn_ratio=1.2
+producer_spawn_ratio=0.01
+consumer_spawn_ratio=0.1
 producer_seed_number = 5
 
 #Global indicies and trakcers
@@ -119,17 +119,19 @@ def find_target( node_index ):
                     best_score = target_score
                     best = target
     if (best > 0):
-        return( best )
+        G.add_edge(node_index,best)
                     
-    
 def kill_node( node_index ):
     global niche_array
     niche_score = G.node[node_index]["niche_score"]
     G.remove_node( node_index )
     niche_array.remove(niche_score)
+        
     
 def run_kill_list():
     global kill_list
+    #remove duplicates
+    kill_list = list(set(kill_list))
     for k in kill_list:
         kill_node(k)
     kill_list = []
@@ -160,7 +162,7 @@ while (run_condition):
     run_condition *= t<time_limit 
     run_condition *= population_size < popultion_limit
     run_condition *= population_size > 0 
-    print( "TIME:", t,"| POPULATION:", population_size)
+    print( "TIME:", t,"| POPULATION:", population_size,"|",population)
     
     for node in G.nodes:
         
@@ -182,7 +184,6 @@ while (run_condition):
         
         # Hunger
         if (target_number>0):
-            print("Hungering", target_number)
             per_capita_quota = node_volume / target_number
             node_volume-=node_metabolism
             intake = 0.0
