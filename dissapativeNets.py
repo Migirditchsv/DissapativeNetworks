@@ -39,8 +39,8 @@ source_regen_ratio = 0.0
 produce_regen_ratio = 0.0
 consumer_regen_ratio = 0.0
 source_metabolic_rate = 0.0
-producer_metabolic_rate = 0.1
-consumer_metabolic_rate = 0.1
+producer_metabolic_ratio = 0.01
+consumer_metabolic_ratio = 0.1
 DEATH_LIMIT = 0.1
 
 #niche controls
@@ -54,7 +54,7 @@ producer_seed_number = 5
 
 #Global indicies and trakcers
 max_niche_score = 0.0
-niche_array = []#useful for on the fly statistics. 
+#niche_array = []#useful for on the fly statistics. 
 kill_list = []
 
 # SVM 01/27: All node objects must be hashable for nice networkx features. 
@@ -63,7 +63,7 @@ kill_list = []
 def set_niche_score(node_index):
     global max_niche_score
     niche_score = np.random.uniform(0,niche_creep_rate*max_niche_score)
-    niche_array.append(niche_score)
+   # niche_array.append(niche_score)
     if (niche_score>max_niche_score):
         max_niche_score=niche_score
     return( niche_score )
@@ -93,8 +93,8 @@ def create_producer(node_index):
     ub = np.random.uniform(0,niche_creep_rate * max_niche_score)
     G.nodes[node_index]["niche_ub"]= ub
     G.nodes[node_index]["niche_lb"]= np.random.uniform(0,ub)
-    G.nodes[node_index]["metabolic_ratio"]= producer_metabolic_rate
-    G.nodes[node_index]["consumption_ratio"]= np.random.uniform(0,1)
+    G.nodes[node_index]["metabolic_ratio"]= producer_metabolic_ratio
+    G.nodes[node_index]["consumption_ratio"]= 0.01
     G.nodes[node_index]["regen_ratio"]= 0.0
     #find targets
     
@@ -119,10 +119,10 @@ def find_target( node_index ):
         G.add_edge(node_index,best)
                     
 def kill_node( node_index ):
-    global niche_array
-    niche_score = G.node[node_index]["niche_score"]
+    #global niche_array
+    #niche_score = G.node[node_index]["niche_score"]
     G.remove_node( node_index )
-    niche_array.remove(niche_score)
+    #niche_array.remove(niche_score)
         
     
 def run_kill_list():
@@ -176,7 +176,20 @@ def do_producer_step(node):
     else: find_target(node_index)
     G.node[node_index]["volume"] -= node_metabolism
 
+def update_niche_stats(node_index):
+    global max_niche_score
+    niche_score = G.node[node_index]["niche_score"]
+    if niche_score > max_niche_score: max_niche_score = niche_score
+
+def change_niche_score(node_index, new_score):
+    old_score = G.node[node_index]["niche_score"]
+    #swap
+    G.node[node_index]["niche_score"] = new_score
+    #update stats
+    update_niche_stats(node_index)
+    #niche_array.remove(old_score)
     
+### Script   
 # Init the world
 G = nx.DiGraph()
 
@@ -186,6 +199,7 @@ for t in range(1, producer_seed_number):
     create_producer(t)
     #force into source niche range
     G.node[t]["niche_lb"]=0.0
+    change_niche_score(t,1.0)
 
 ### GRIND
 run_condition=1
@@ -206,6 +220,7 @@ while (run_condition):
     
     for node in G.nodes:
         if(G.node[node]["role"] == "Producer"):
+            update_niche_stats(node)
             do_producer_step(node)
     
     # Reap nodes
