@@ -48,6 +48,11 @@ consumer_metabolic_rate = 0.1
 #niche controls
 niche_creep_rate = 0.1 # rate of increase in niche dist. mean per # of nodes
 
+#Network Growth Controls
+consumer_delay_time=100#How many time steps to wait until consumers appear
+producer_spawn_ratio=1.1
+consumer_spawn_ratio=1.2
+
 #Global indicies and trakcers
 max_niche_score = 0.0
 niche_array = []#useful for on the fly statistics. 
@@ -61,46 +66,66 @@ class Node:
     
     # Initializer & attributes
     def __init__(self, node_index ):
-        self.targets = []
-        self.node_index = node_index
-        self.volume = 0
-        self.niche_score = -1
-        self.niche_lb, self.niche_ub = (-1,-1)
-        self.regen_ratio = 0
-        self.metabolic_ratio = 0
-        self.consumption_ratio = 0
-    
-    # Instance Fxns
-    def set_niche_score(self, node_index):
-        global max_niche_score
-        niche_score = node_index * niche_creep_rate
-        if (niche_score>max_niche_score):
-            max_niche_score=niche_score
-        return( niche_score )
-    def rand_niche_bounds(self ):
-        global max_niche_score
-        mu = self.niche_score
-        sigma = max_niche_score
-        ub = np.random.uniform(0,max_niche_score)
-        lb = np.random.uniform(0,ub)
-        return(lb,ub)
-
+        self.attributes= {
+        "targets":[],
+        "node_index" : node_index,
+        "volume" : 0,
+        "niche_score" : -1,
+        "niche_lb" : -1,
+        "niche_ub" : -1,
+        "regen_ratio" : 0,
+        "metabolic_ratio" : 0,
+        "consumption_ratio" : 0
+        }
         
-
-
 ### Useful Functions
+def set_niche_score(node_index):
+    global max_niche_score
+    niche_score = node_index * niche_creep_rate
+    niche_array.append(niche_score)
+    if (niche_score>max_niche_score):
+        max_niche_score=niche_score
+    return( niche_score )
+
+def create_source(node_index):
+    #init node
+    G.add_node(node_index)
+    #set properties
+    G.nodes[node_index]["role"]="Source"
+    G.nodes[node_index]["volume"]= source_initial_volume
+    G.nodes[node_index]["niche_score"]= 0
+    G.nodes[node_index]["niche_lb"]= 0
+    G.nodes[node_index]["niche_ub"]= 0
+    G.nodes[node_index]["metabolic_ratio"]= 0
+    G.nodes[node_index]["consumption_ratio"]= 0
+    G.nodes[node_index]["regen_ratio"]= 0.0
+
 def create_producer(node_index):
-    new_producer = Node(node_index)
-    new_producer.volume = producer_initial_volume
-    new_producer.set_niche_score(node_index)
-    new_producer.niche_lb,new_producer.niche_ub=new_producer.rand_niche_bounds()
-    new_producer.metabolic_ratio = producer_metabolic_rate
-    new_producer.consumption_ratio = np.random.uniform(0,1)
-    niche_array.append(new_producer.niche_score)
-    return( new_producer )
+    #init node
+    G.add_node(node_index)
+    #set properties
+    G.nodes[node_index]["role"]="Producer"
+    G.nodes[node_index]["volume"]= producer_initial_volume
+    G.nodes[node_index]["niche_score"]= set_niche_score( node_index )
+    G.nodes[node_index]["niche_lb"]= np.random.uniform(0,ub)
+    G.nodes[node_index]["niche_ub"]= np.random.uniform(0,max_niche_score)
+    G.nodes[node_index]["metabolic_ratio"]= producer_metabolic_rate
+    G.nodes[node_index]["consumption_ratio"]= np.random.uniform(0,1)
+    G.nodes[node_index]["regen_ratio"]= 0.0
+    #find targets
     
-def node_update(node_name):
-    return(0)
+
+
+def find_targets( node_index ):
+    ub = 0
+    
+def kill_node( node_index ):
+    node_index = str( node_index )
+    node = G.node( node_index )
+    node.attributes["niche_score"]
+    G.remove_node( node_index )
+    niche_array.remove(niche_score)
+    
     
     
     
@@ -108,25 +133,54 @@ def node_update(node_name):
 G = nx.DiGraph()
 
 # Create source node
-source = Node(0)
-source.role="Source"
-source.volume = source_initial_volume
-source.niche_score = 0.0
-niche_array.append[0.0]
-G.add_node(source, source_attributes)
+create_source(0)
 
+
+### GRIND
 run_condition=1
 t=0
 while (run_condition):
 
     # Update State Variables
     t+=1
-    population = G.size
+    population = list( G.nodes() )
+    population_size = len(population)
     
     # run through and-listed run conditions
     run_condition *= t<time_limit 
-    run_condition *= population < popultion_limit
-    run_condition *= population > 0 
+    run_condition *= population_size < popultion_limit
+    run_condition *= population_size > 0 
+    print( "TIME:", t,"| POPULATION:", population)
+    
+    for node in G.nodes:
+        
+        node_index = G.node[node]["node_index"]
+        niche_score = node.attributes["niche_score"]
+        
+        targets = [ t for t in G.neighbors(node) ]
+        target_number = len( targets )
+        
+        node_volume = node.attributes["volume"]
+        node_quota = node.attributes["consumption_ratio"] * node_volume
+        node_metabolism = node.attributes["metabolic_ratio"] * node_volume
+        
+        # Die if starved
+        if (node_metabolism>=node_volume):
+            kill_node( node_index )
+            continue
+        
+        # Hunger
+        per_capita_quota = node_volume / target_number
+        node_volume-=node_metabolism
+        intake = 0.0
+        for target in targets:
+            target_index = target.attributes["node_index"]
+            target_volume = target.attributes["volume"]
+            if per_capita_quota >= target_volume:
+                intake += target_volume
+                kill_node( target_index )
+            
+        # Spawn
     
     
 
