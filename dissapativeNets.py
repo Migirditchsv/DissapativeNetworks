@@ -29,22 +29,22 @@ import math as m
 # Globals
 ## Safety triggers
 popultion_limit = 10**5
-time_limit = 50#**5
+time_limit = 30#**5
 ## Experimental parameters
 
 #rescource volume regeneration and metabolism controls
 
 # Regen and metabolism are seperated because we'll probably want to look at non
 #-linear metabolic/regen scaling effects at some future point. 
-source_initial_volume = 10**(6)
+source_initial_volume = 10**(7)
 producer_initial_volume = 1.0
 source_regen_ratio = 0.0
 produce_regen_ratio = 0.0
 consumer_regen_ratio = 0.0
 source_metabolic_rate = 0.0
 producer_metabolic_ratio = 0.01
-consumer_metabolic_ratio = 0.0001
-producer_consumption_ratio = 0.0001
+consumer_metabolic_ratio = 0.1
+producer_consumption_ratio = 0.2
 DEATH_LIMIT = 0.2
 
 #niche controls
@@ -53,8 +53,8 @@ niche_creep_rate = 1.2 # rate of increase in niche dist. mean per # of nodes
 #Network Growth Controls
 consumer_delay_time=100#How many time steps to wait until consumers appear
 producer_spawn_ratio=0.01
-consumer_spawn_ratio=0.1
-producer_seed_number = 10
+consumer_spawn_ratio=5
+producer_seed_number = 5
 
 #Plotting controls
 scale_factor = 200.0 # scales node volumes
@@ -339,7 +339,11 @@ while (run_condition):
     if t%plot_frequency ==0:
         plotter()
     # spawn Nodes
-    spawn_number = m.ceil(population_size*producer_spawn_ratio)
+    
+    #skip spawn if rescource has died
+    if 0 not in G.nodes: continue
+
+    spawn_number = 5#m.ceil(population_size*producer_spawn_ratio)
     for spawn in range(0,spawn_number):
         index_max +=1
         create_producer(index_max)
