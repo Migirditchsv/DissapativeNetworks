@@ -84,9 +84,9 @@ def set_niche_score_2():
     if len(moment)<2: return( niche_creep_rate,0,niche_creep_rate)
     sd = stats.stdev( moment )
     moment = stats.mean(moment)
-    lb = moment - niche_creep_rate + sd
+    lb = moment - (niche_creep_rate * sd)
     lb = max(0, lb)
-    ub = moment + niche_creep_rate + sd
+    ub = moment + ( niche_creep_rate * sd)
     ub = min( max_niche_score, ub)
     return(moment,lb,ub)
     
@@ -333,7 +333,7 @@ while (run_condition):
             do_producer_step(node)
     
     # Reap nodes
-    remove_isolates()
+    #remove_isolates()
     run_kill_list()
     #plot
     if t%plot_frequency ==0:
@@ -350,9 +350,9 @@ while (run_condition):
         find_target(index_max)        
 
 #clean up for print
-remove_isolates()
-run_kill_list()
-plotter()
+#remove_isolates()
+#run_kill_list()
+#plotter()
     
 
 
