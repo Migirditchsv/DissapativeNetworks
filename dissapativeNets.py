@@ -20,7 +20,8 @@ Change Log:
 """
 
 # Imports
-import matplotlib as plt
+import statistics as stats
+import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 import math as m
@@ -28,7 +29,7 @@ import math as m
 # Globals
 ## Safety triggers
 popultion_limit = 10**5
-time_limit = 12#**5
+time_limit = 50#**5
 ## Experimental parameters
 
 #rescource volume regeneration and metabolism controls
@@ -42,21 +43,22 @@ produce_regen_ratio = 0.0
 consumer_regen_ratio = 0.0
 source_metabolic_rate = 0.0
 producer_metabolic_ratio = 0.01
-consumer_metabolic_ratio = 0.1
-producer_consumption_ratio = 0.3
+consumer_metabolic_ratio = 0.0001
+producer_consumption_ratio = 0.0001
 DEATH_LIMIT = 0.2
 
 #niche controls
-niche_creep_rate = 1.1 # rate of increase in niche dist. mean per # of nodes
+niche_creep_rate = 1.2 # rate of increase in niche dist. mean per # of nodes
 
 #Network Growth Controls
 consumer_delay_time=100#How many time steps to wait until consumers appear
 producer_spawn_ratio=0.01
 consumer_spawn_ratio=0.1
-producer_seed_number = 5
+producer_seed_number = 10
 
 #Plotting controls
-scale_factor = 100.0 # scales node volumes
+scale_factor = 200.0 # scales node volumes
+plot_frequency = 1
 
 #Global indicies and trakcers
 max_niche_score = 0.0 
@@ -66,10 +68,32 @@ kill_list = []
 # SVM 01/27: All node objects must be hashable for nice networkx features. 
 
 ### Useful Functions
+def set_niche_score_2():
+    global max_niche_score
+    moment = []
+    total_volume = 0
+    for node_index in G.nodes:
+        role = G.node[node_index]["role"]
+        #if role != "Producer": continue
+        try:
+            niche_score = G.node[node_index]["niche_score"]
+            volume = G.node[node_index]["volume"]
+            moment.append( volume * niche_score )
+            total_volume += volume
+        except: continue
+    if len(moment)<2: return( niche_creep_rate,0,niche_creep_rate)
+    sd = stats.stdev( moment )
+    moment = stats.mean(moment)
+    lb = moment - niche_creep_rate * sd
+    lb = max(0, lb)
+    ub = moment + niche_creep_rate * sd
+    ub = min( max_niche_score, ub)
+    return(moment,lb,ub)
+    
 def set_niche_score(node_index):
     global max_niche_score
-    niche_score = np.random.uniform(0,niche_creep_rate * max_niche_score)
-    print("SETTING NICHE:", niche_score)
+    niche_score = first_moment() * niche_creep_rate
+    #print("SETTING NICHE:", niche_score)
     update_niche_stats
     niche_list.append(niche_score)
     return( niche_score )
@@ -112,12 +136,12 @@ def create_producer(node_index):
     G.nodes[node_index]["node_index"]=node_index
     G.nodes[node_index]["role"]="Producer"
     G.nodes[node_index]["volume"]= producer_initial_volume 
-    G.nodes[node_index]["niche_score"]= set_niche_score( node_index )
-    ub = np.random.uniform(0,niche_creep_rate * max_niche_score)
+    niche, lb, ub = set_niche_score_2()
+    G.nodes[node_index]["niche_score"]= niche
     G.nodes[node_index]["niche_ub"]= ub
-    G.nodes[node_index]["niche_lb"]= np.random.uniform(0,ub)
+    G.nodes[node_index]["niche_lb"]= 0.0#lb
     G.nodes[node_index]["metabolic_ratio"]= producer_metabolic_ratio
-    G.nodes[node_index]["consumption_ratio"]= producer_consumption_ratio
+    G.nodes[node_index]["consumption_ratio"]= producer_consumption_ratio/ub
     G.nodes[node_index]["regen_ratio"]= 0.0
     #update trackers
     update_niche_list()
@@ -147,14 +171,18 @@ def find_target( node_index ):
                     best = target
     if (best_score > 0):
         G.add_edge(node_index,best)
-    else: print( "EDGE:",node_index," failed to find target")
+    #else: print( "EDGE:",node_index," failed to find target")
                     
 def kill_node( node_index ):
     #global niche_array
     #niche_score = G.node[node_index]["niche_score"]
     G.remove_node( node_index )
     #niche_array.remove(niche_score)
-        
+
+def remove_isolates():
+    global kill_list
+    isolates = nx.isolates(G)
+    kill_list.extend(isolates)
     
 def run_kill_list():
     global kill_list
@@ -179,7 +207,7 @@ def do_producer_step(node):
     
     # Die if starved
     if (node_volume<=DEATH_LIMIT):
-        print( "t:",t,"node:", node,"fate: 0 starved\n")
+        #print( "t:",t,"node:", node,"fate: 0 starved\n")
         kill_list.append(node_index)
         return()
     
@@ -194,7 +222,7 @@ def do_producer_step(node):
             if (per_capita_quota >= target_volume):
                 intake += target_volume
                 kill_list.append( target_index )
-                print( "t:",t,"node:", node,"killed",target,"\n")
+                #print( "t:",t,"node:", node,"killed",target,"\n")
             else:
                 intake += per_capita_quota
                 target_volume += -per_capita_quota
@@ -265,9 +293,9 @@ def plotter():
 
     nx.draw_networkx_labels(G,pos,labels,font_size=16)
 
-    #plt.axis('off')
+    plt.axis('off')
     #plt.savefig("labels_and_colors.png") # save as png
-    #plt.show() # display
+    plt.show() # display
     
 ### Script   
 # Init the world
@@ -297,7 +325,7 @@ while (run_condition):
     run_condition *= t<time_limit 
     run_condition *= population_size < popultion_limit
     run_condition *= population_size > 0 
-    print( "TIME:", t,"| POPULATION:", population_size,"|",population)
+    #print( "TIME:", t,"| POPULATION:", population_size,"|",population)
     
     for node in G.nodes:
         if(G.node[node]["role"] == "Producer"):
@@ -305,7 +333,11 @@ while (run_condition):
             do_producer_step(node)
     
     # Reap nodes
+    remove_isolates()
     run_kill_list()
+    #plot
+    if t%plot_frequency ==0:
+        plotter()
     # spawn Nodes
     spawn_number = m.ceil(population_size*producer_spawn_ratio)
     for spawn in range(0,spawn_number):
@@ -313,7 +345,9 @@ while (run_condition):
         create_producer(index_max)
         find_target(index_max)        
 
-    
+#clean up for print
+remove_isolates()
+run_kill_list()
 plotter()
     
 
