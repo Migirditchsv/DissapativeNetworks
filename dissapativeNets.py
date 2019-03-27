@@ -29,7 +29,7 @@ import math as m
 # Globals
 ## Safety triggers
 popultion_limit = 10**5
-time_limit = 30#**5
+time_limit = 100#**5
 ## Experimental parameters
 
 #rescource volume regeneration and metabolism controls
@@ -48,7 +48,7 @@ producer_consumption_ratio = 0.2
 DEATH_LIMIT = 0.2
 
 #niche controls
-niche_creep_rate = 1.2 # rate of increase in niche dist. mean per # of nodes
+niche_creep_rate = 0.5 # rate of increase in niche dist. mean per # of nodes
 
 #Network Growth Controls
 consumer_delay_time=100#How many time steps to wait until consumers appear
@@ -84,15 +84,15 @@ def set_niche_score_2():
     if len(moment)<2: return( niche_creep_rate,0,niche_creep_rate)
     sd = stats.stdev( moment )
     moment = stats.mean(moment)
-    lb = moment - niche_creep_rate * sd
+    lb = moment - niche_creep_rate + sd
     lb = max(0, lb)
-    ub = moment + niche_creep_rate * sd
+    ub = moment + niche_creep_rate + sd
     ub = min( max_niche_score, ub)
     return(moment,lb,ub)
     
 def set_niche_score(node_index):
     global max_niche_score
-    niche_score = first_moment() * niche_creep_rate
+    niche_score = first_moment() + niche_creep_rate
     #print("SETTING NICHE:", niche_score)
     update_niche_stats
     niche_list.append(niche_score)
