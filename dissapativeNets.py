@@ -25,6 +25,14 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 import math as m
+import os
+from datetime import datetime
+
+#Misc path stuff
+path = os.getcwd()
+time = datetime.now()
+target_dir = "run_" + str(time.hour) + ":" + str(time.minute) + "." + str(time.second) + "/"
+os.mkdir(path + "/" + target_dir)
 
 # Globals
 ## Safety triggers
@@ -36,16 +44,16 @@ time_limit = 100#**5
 
 # Regen and metabolism are seperated because we'll probably want to look at non
 #-linear metabolic/regen scaling effects at some future point. 
-source_initial_volume = 10**(7)
+source_initial_volume = 10**(9)
 producer_initial_volume = 1.0
-source_regen_ratio = 0.0
+source_regen_ratio = 1
 produce_regen_ratio = 0.0
 consumer_regen_ratio = 0.0
 source_metabolic_rate = 0.0
-producer_metabolic_ratio = 0.01
+producer_metabolic_ratio = 0.001
 consumer_metabolic_ratio = 0.1
-producer_consumption_ratio = 0.2
-DEATH_LIMIT = 0.2
+producer_consumption_ratio = 0.1
+DEATH_LIMIT = 0.1
 
 #niche controls
 niche_creep_rate = 0.5 # rate of increase in niche dist. mean per # of nodes
@@ -53,7 +61,7 @@ niche_creep_rate = 0.5 # rate of increase in niche dist. mean per # of nodes
 #Network Growth Controls
 consumer_delay_time=100#How many time steps to wait until consumers appear
 producer_spawn_ratio=0.01
-consumer_spawn_ratio=5
+consumer_spawn_ratio=10
 producer_seed_number = 5
 
 #Plotting controls
@@ -139,7 +147,7 @@ def create_producer(node_index):
     niche, lb, ub = set_niche_score_2()
     G.nodes[node_index]["niche_score"]= niche
     G.nodes[node_index]["niche_ub"]= ub
-    G.nodes[node_index]["niche_lb"]= 0.0#lb
+    G.nodes[node_index]["niche_lb"]= 0
     G.nodes[node_index]["metabolic_ratio"]= producer_metabolic_ratio
     G.nodes[node_index]["consumption_ratio"]= producer_consumption_ratio/ub
     G.nodes[node_index]["regen_ratio"]= 0.0
@@ -147,15 +155,15 @@ def create_producer(node_index):
     update_niche_list()
     #find targets
     find_target( node_index )
-    
-
 
 def find_target( node_index ):
     ub = G.node[node_index]["niche_ub"]
     lb = G.node[node_index]["niche_lb"]
     best_score = 0.0
     best = -1
-    for target in G.nodes:
+    possible_targets = list(G.nodes())
+    np.random.shuffle(possible_targets)
+    for target in possible_targets:
         # don't make parallel or self loops
         blacklist = [node_index]
         edges = G.out_edges(node_index)
@@ -248,7 +256,7 @@ def change_niche_score(node_index, new_score):
         max_niche_score = new_score
     
     
-def plotter():
+def plotter(target_dir, show = True):
     pos=nx.spring_layout(G) # positions for all nodes
     labels={}
     max_volume = 0.0
@@ -264,13 +272,13 @@ def plotter():
         # Type-> color
         role = G.node[node_index]["role"]
         if (role=="Source"):
-            color = "Green"
+            color = "green"
         elif (role=="Producer"):
-            color = "Blue"
-        elif (role=="Consumer"):
-            color = "Red"
+            color = "blue"
+        elif (role=="consumer"):
+            color = "red"
         else: 
-            color = "Black"
+            color = "black"
         # volume -> size
         volume = scale_factor*min(1,G.node[node_index]["volume"] / max_volume )
         
@@ -290,12 +298,15 @@ def plotter():
         
         # some math labels
         labels[node_index]=node_index
-
+        
     nx.draw_networkx_labels(G,pos,labels,font_size=16)
 
     plt.axis('off')
-    #plt.savefig("labels_and_colors.png") # save as png
+    local_now = datetime.now()
+    plt.savefig(target_dir + str(local_now) + "_graph.png") # save as png
+   
     plt.show() # display
+    nx.write_gexf(G, target_dir + str(local_now) + "_graph.gexf")
     
 ### Script   
 # Init the world
@@ -303,6 +314,7 @@ G = nx.DiGraph()
 
 # Create source node & some seed producers
 create_source(0)
+
 for t in range(1, producer_seed_number):
     create_producer(t)
     #force into source niche range
@@ -311,12 +323,23 @@ for t in range(1, producer_seed_number):
     change_niche_score(t,0.5*niche_creep_rate)
 
 ### GRIND
+
 run_condition=1
 t=0
 index_max = producer_seed_number
+
+num_producers = []
+num_nodes = []
+size_source = []
+
 while (run_condition):
 
     # Update State Variables
+    num_producers.append(len([x for x in G.nodes() if G.node[x]["role"] == "Producer"]))
+    num_nodes.append(len(G.nodes()))
+    if 0 in G.nodes():
+        size_source.append(G.node[0]["volume"])
+    
     t+=1
     population = list( G.nodes() )
     population_size = len(population)
@@ -337,13 +360,13 @@ while (run_condition):
     run_kill_list()
     #plot
     if t%plot_frequency ==0:
-        plotter()
+        plotter(target_dir)
     # spawn Nodes
     
     #skip spawn if rescource has died
     if 0 not in G.nodes: continue
 
-    spawn_number = 5#m.ceil(population_size*producer_spawn_ratio)
+    spawn_number = 2#m.ceil(population_size*producer_spawn_ratio)
     for spawn in range(0,spawn_number):
         index_max +=1
         create_producer(index_max)
