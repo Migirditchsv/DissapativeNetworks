@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf version="1.2" xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance">
+  <graph defaultedgetype="directed" mode="static" name="">
+    <attributes class="node" mode="static">
+      <attribute id="0" title="node_index" type="long" />
+      <attribute id="1" title="role" type="string" />
+      <attribute id="2" title="volume" type="double" />
+      <attribute id="3" title="niche_score" type="double" />
+      <attribute id="4" title="niche_ub" type="double" />
+      <attribute id="5" title="niche_lb" type="long" />
+      <attribute id="6" title="metabolic_ratio" type="double" />
+      <attribute id="7" title="consumption_ratio" type="double" />
+      <attribute id="8" title="regen_ratio" type="double" />
+    </attributes>
+    <meta>
+      <creator>NetworkX 2.2</creator>
+      <lastmodified>16/04/2019</lastmodified>
+    </meta>
+    <nodes>
+      <node id="59" label="59">
+        <attvalues>
+          <attvalue for="0" value="59" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="2372920732.546434" />
+          <attvalue for="3" value="23445692.12869839" />
+          <attvalue for="4" value="23445692.12869839" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.01" />
+          <attvalue for="7" value="4.265175856233151e-09" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges />
+  </graph>
+</gexf>

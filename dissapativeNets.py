@@ -44,19 +44,19 @@ time_limit = 100#**5
 
 # Regen and metabolism are seperated because we'll probably want to look at non
 #-linear metabolic/regen scaling effects at some future point. 
-source_initial_volume = 10**(9)
+source_initial_volume = 10**(12)
 producer_initial_volume = 1.0
 source_regen_ratio = 1
 produce_regen_ratio = 0.0
 consumer_regen_ratio = 0.0
 source_metabolic_rate = 0.0
-producer_metabolic_ratio = 0.001
+producer_metabolic_ratio = 0.01
 consumer_metabolic_ratio = 0.1
 producer_consumption_ratio = 0.1
 DEATH_LIMIT = 0.1
 
 #niche controls
-niche_creep_rate = 0.5 # rate of increase in niche dist. mean per # of nodes
+niche_creep_rate = 0.1 # rate of increase in niche dist. mean per # of nodes
 
 #Network Growth Controls
 consumer_delay_time=100#How many time steps to wait until consumers appear
@@ -147,7 +147,7 @@ def create_producer(node_index):
     niche, lb, ub = set_niche_score_2()
     G.nodes[node_index]["niche_score"]= niche
     G.nodes[node_index]["niche_ub"]= ub
-    G.nodes[node_index]["niche_lb"]= 0
+    G.nodes[node_index]["niche_lb"]= .5 * niche 
     G.nodes[node_index]["metabolic_ratio"]= producer_metabolic_ratio
     G.nodes[node_index]["consumption_ratio"]= producer_consumption_ratio/ub
     G.nodes[node_index]["regen_ratio"]= 0.0
@@ -303,10 +303,10 @@ def plotter(target_dir, show = True):
 
     plt.axis('off')
     local_now = datetime.now()
-    plt.savefig(target_dir + str(local_now) + "_graph.png") # save as png
+    #plt.savefig(target_dir + str(local_now) + "_graph.png") # save as png
    
     plt.show() # display
-    nx.write_gexf(G, target_dir + str(local_now) + "_graph.gexf")
+    #nx.write_gexf(G, target_dir + str(local_now) + "_graph.gexf")
     
 ### Script   
 # Init the world
@@ -350,7 +350,10 @@ while (run_condition):
     run_condition *= population_size > 0 
     #print( "TIME:", t,"| POPULATION:", population_size,"|",population)
     
-    for node in G.nodes:
+    
+    update_list = list(G.nodes())
+    np.random.shuffle(update_list)
+    for node in update_list:
         if(G.node[node]["role"] == "Producer"):
             update_niche_stats(node)
             do_producer_step(node)
