@@ -1,0 +1,447 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf version="1.2" xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance">
+  <graph defaultedgetype="directed" mode="static" name="">
+    <attributes class="node" mode="static">
+      <attribute id="0" title="node_index" type="long" />
+      <attribute id="1" title="role" type="string" />
+      <attribute id="2" title="volume" type="double" />
+      <attribute id="3" title="niche_score" type="double" />
+      <attribute id="4" title="niche_ub" type="double" />
+      <attribute id="5" title="niche_lb" type="long" />
+      <attribute id="6" title="metabolic_ratio" type="double" />
+      <attribute id="7" title="consumption_ratio" type="double" />
+      <attribute id="8" title="regen_ratio" type="double" />
+    </attributes>
+    <meta>
+      <creator>NetworkX 2.2</creator>
+      <lastmodified>09/04/2019</lastmodified>
+    </meta>
+    <nodes>
+      <node id="29" label="29">
+        <attvalues>
+          <attvalue for="0" value="29" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="228504711.8403746" />
+          <attvalue for="3" value="814.2982942973239" />
+          <attvalue for="4" value="814.2982942973239" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="0.00012280512031072376" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="30" label="30">
+        <attvalues>
+          <attvalue for="0" value="30" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="560441039.1511111" />
+          <attvalue for="3" value="1627.7822903003503" />
+          <attvalue for="4" value="814.2982942973239" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="0.00012280512031072376" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="31" label="31">
+        <attvalues>
+          <attvalue for="0" value="31" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="250535847.91111982" />
+          <attvalue for="3" value="1627.7822903003503" />
+          <attvalue for="4" value="1627.7822903003503" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="6.143327679375876e-05" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="32" label="32">
+        <attvalues>
+          <attvalue for="0" value="32" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="330634671.21345544" />
+          <attvalue for="3" value="3253.9367983104003" />
+          <attvalue for="4" value="1627.7822903003503" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="6.143327679375876e-05" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="33" label="33">
+        <attvalues>
+          <attvalue for="0" value="33" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="249180387.2804877" />
+          <attvalue for="3" value="3253.9367983104003" />
+          <attvalue for="4" value="3253.9367983104003" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="3.073200439907892e-05" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="34" label="34">
+        <attvalues>
+          <attvalue for="0" value="34" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="261809735.9970348" />
+          <attvalue for="3" value="6504.619659822491" />
+          <attvalue for="4" value="3253.9367983104003" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="3.073200439907892e-05" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="35" label="35">
+        <attvalues>
+          <attvalue for="0" value="35" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="261680260.37297973" />
+          <attvalue for="3" value="6504.619659822491" />
+          <attvalue for="4" value="6504.619659822491" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="1.537368904406149e-05" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="36" label="36">
+        <attvalues>
+          <attvalue for="0" value="36" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="65911331.97401791" />
+          <attvalue for="3" value="13002.734699985158" />
+          <attvalue for="4" value="6504.619659822491" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="1.537368904406149e-05" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="37" label="37">
+        <attvalues>
+          <attvalue for="0" value="37" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="59699280.98015014" />
+          <attvalue for="3" value="13002.734699985158" />
+          <attvalue for="4" value="13002.734699985158" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="7.690689866964228e-06" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="38" label="38">
+        <attvalues>
+          <attvalue for="0" value="38" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="118770480.47715202" />
+          <attvalue for="3" value="25992.46666527033" />
+          <attvalue for="4" value="13002.734699985158" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="7.690689866964228e-06" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="39" label="39">
+        <attvalues>
+          <attvalue for="0" value="39" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="64042668.940451495" />
+          <attvalue for="3" value="25992.46666527033" />
+          <attvalue for="4" value="25992.46666527033" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="3.847268567765997e-06" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="40" label="40">
+        <attvalues>
+          <attvalue for="0" value="40" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="33005157.22026074" />
+          <attvalue for="3" value="51958.94086387539" />
+          <attvalue for="4" value="25992.46666527033" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="3.847268567765997e-06" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="41" label="41">
+        <attvalues>
+          <attvalue for="0" value="41" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="15519235.636488495" />
+          <attvalue for="3" value="51958.94086387539" />
+          <attvalue for="4" value="51958.94086387539" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="1.9245965821740854e-06" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="42" label="42">
+        <attvalues>
+          <attvalue for="0" value="42" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="8251287.240178488" />
+          <attvalue for="3" value="103865.9227868869" />
+          <attvalue for="4" value="51958.94086387539" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="1.9245965821740854e-06" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="43" label="43">
+        <attvalues>
+          <attvalue for="0" value="43" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="7272071.97607636" />
+          <attvalue for="3" value="103865.9227868869" />
+          <attvalue for="4" value="103865.9227868869" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="9.627796809275065e-07" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="44" label="44">
+        <attvalues>
+          <attvalue for="0" value="44" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="4127707.4738261565" />
+          <attvalue for="3" value="207627.97965098693" />
+          <attvalue for="4" value="103865.9227868869" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="9.627796809275065e-07" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="45" label="45">
+        <attvalues>
+          <attvalue for="0" value="45" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="6296004.22398849" />
+          <attvalue for="3" value="207627.97965098693" />
+          <attvalue for="4" value="207627.97965098693" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="4.816306557916491e-07" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="46" label="46">
+        <attvalues>
+          <attvalue for="0" value="46" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="1561611.113051109" />
+          <attvalue for="3" value="415048.3313223229" />
+          <attvalue for="4" value="207627.97965098693" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="4.816306557916491e-07" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="47" label="47">
+        <attvalues>
+          <attvalue for="0" value="47" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="4334627.992253626" />
+          <attvalue for="3" value="415048.3313223229" />
+          <attvalue for="4" value="415048.3313223229" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="2.409357957937214e-07" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="48" label="48">
+        <attvalues>
+          <attvalue for="0" value="48" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="566867.8757507459" />
+          <attvalue for="3" value="829681.6143133234" />
+          <attvalue for="4" value="415048.3313223229" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="2.409357957937214e-07" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="49" label="49">
+        <attvalues>
+          <attvalue for="0" value="49" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="1134303.1868125538" />
+          <attvalue for="3" value="829681.6143133234" />
+          <attvalue for="4" value="829681.6143133234" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="1.2052816197784962e-07" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="50" label="50">
+        <attvalues>
+          <attvalue for="0" value="50" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="308886.2877565412" />
+          <attvalue for="3" value="1658533.5470123335" />
+          <attvalue for="4" value="829681.6143133234" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="1.2052816197784962e-07" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="51" label="51">
+        <attvalues>
+          <attvalue for="0" value="51" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="618081.7709963223" />
+          <attvalue for="3" value="1658533.5470123335" />
+          <attvalue for="4" value="1658533.5470123335" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="6.02942281029763e-08" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="52" label="52">
+        <attvalues>
+          <attvalue for="0" value="52" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="359841.94317429565" />
+          <attvalue for="3" value="3315408.560477655" />
+          <attvalue for="4" value="1658533.5470123335" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="6.02942281029763e-08" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="53" label="53">
+        <attvalues>
+          <attvalue for="0" value="53" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="359841.94317429553" />
+          <attvalue for="3" value="3315408.560477655" />
+          <attvalue for="4" value="3315408.560477655" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="3.016219514906268e-08" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="54" label="54">
+        <attvalues>
+          <attvalue for="0" value="54" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="517773.18256214354" />
+          <attvalue for="3" value="6627501.712394832" />
+          <attvalue for="4" value="3315408.560477655" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="3.016219514906268e-08" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="55" label="55">
+        <attvalues>
+          <attvalue for="0" value="55" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="258757.0832314064" />
+          <attvalue for="3" value="6627501.712394832" />
+          <attvalue for="4" value="6627501.712394832" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="1.508864189547908e-08" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="56" label="56">
+        <attvalues>
+          <attvalue for="0" value="56" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="129443.26324732685" />
+          <attvalue for="3" value="13248375.913986359" />
+          <attvalue for="4" value="6627501.712394832" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="1.508864189547908e-08" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="57" label="57">
+        <attvalues>
+          <attvalue for="0" value="57" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="129443.26324732686" />
+          <attvalue for="3" value="13248375.913986359" />
+          <attvalue for="4" value="13248375.913986359" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="7.54809500041659e-09" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="58" label="58">
+        <attvalues>
+          <attvalue for="0" value="58" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="259275.37470544258" />
+          <attvalue for="3" value="26483503.423123643" />
+          <attvalue for="4" value="13248375.913986359" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="7.54809500041659e-09" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="59" label="59">
+        <attvalues>
+          <attvalue for="0" value="59" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="64754.00862797742" />
+          <attvalue for="3" value="26483503.423123643" />
+          <attvalue for="4" value="26483503.423123643" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="3.7759354720677406e-09" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="0" source="34" target="29" />
+      <edge id="1" source="35" target="30" />
+      <edge id="2" source="36" target="34" />
+      <edge id="3" source="37" target="30" />
+      <edge id="4" source="39" target="30" />
+      <edge id="5" source="40" target="32" />
+      <edge id="6" source="41" target="32" />
+      <edge id="7" source="42" target="30" />
+      <edge id="8" source="43" target="34" />
+      <edge id="9" source="44" target="29" />
+      <edge id="10" source="46" target="35" />
+      <edge id="11" source="47" target="31" />
+      <edge id="12" source="48" target="31" />
+      <edge id="13" source="49" target="33" />
+      <edge id="14" source="50" target="33" />
+      <edge id="15" source="51" target="38" />
+      <edge id="16" source="53" target="29" />
+      <edge id="17" source="55" target="30" />
+      <edge id="18" source="56" target="35" />
+      <edge id="19" source="59" target="32" />
+    </edges>
+  </graph>
+</gexf>

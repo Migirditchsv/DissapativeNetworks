@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf version="1.2" xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance">
+  <graph defaultedgetype="directed" mode="static" name="">
+    <attributes class="node" mode="static">
+      <attribute id="0" title="node_index" type="long" />
+      <attribute id="1" title="role" type="string" />
+      <attribute id="2" title="volume" type="double" />
+      <attribute id="3" title="niche_score" type="long" />
+      <attribute id="4" title="niche_lb" type="long" />
+      <attribute id="5" title="niche_ub" type="long" />
+      <attribute id="6" title="metabolic_ratio" type="long" />
+      <attribute id="7" title="consumption_ratio" type="long" />
+      <attribute id="8" title="regen_ratio" type="double" />
+    </attributes>
+    <meta>
+      <creator>NetworkX 2.2</creator>
+      <lastmodified>09/04/2019</lastmodified>
+    </meta>
+    <nodes>
+      <node id="0" label="0">
+        <attvalues>
+          <attvalue for="0" value="0" />
+          <attvalue for="1" value="Source" />
+          <attvalue for="2" value="999999958.0989112" />
+          <attvalue for="3" value="0" />
+          <attvalue for="4" value="0" />
+          <attvalue for="5" value="0" />
+          <attvalue for="6" value="0" />
+          <attvalue for="7" value="0" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="2" label="2">
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="23.90814188704899" />
+          <attvalue for="3" value="0.25" />
+          <attvalue for="5" value="0.5" />
+          <attvalue for="4" value="0.0" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="0.468629150101524" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="6" label="6">
+        <attvalues>
+          <attvalue for="0" value="6" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="7.995978028987004" />
+          <attvalue for="3" value="0.31225" />
+          <attvalue for="5" value="0.43184136151913316" />
+          <attvalue for="4" value="0.1926586384808669" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="0.2315665170381541" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="7" label="7">
+        <attvalues>
+          <attvalue for="0" value="7" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="15.904199800104971" />
+          <attvalue for="3" value="0.31225" />
+          <attvalue for="5" value="0.41581915714873807" />
+          <attvalue for="4" value="0.20868084285126198" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="0.24048916044584764" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="9" label="9">
+        <attvalues>
+          <attvalue for="0" value="9" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="1.9920119920020003" />
+          <attvalue for="3" value="0.4576044166666667" />
+          <attvalue for="5" value="0.5" />
+          <attvalue for="4" value="0.3293040988558661" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="0.2" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="11" label="11">
+        <attvalues>
+          <attvalue for="0" value="11" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="1.9940059980000002" />
+          <attvalue for="3" value="0.9004672493125834" />
+          <attvalue for="5" value="0.9004672493125834" />
+          <attvalue for="4" value="0.6893742273187591" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="0.11105345594338939" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="13" label="13">
+        <attvalues>
+          <attvalue for="0" value="13" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="0.4960020000000003" />
+          <attvalue for="3" value="1.6147573958347048" />
+          <attvalue for="5" value="1.6147573958347048" />
+          <attvalue for="4" value="1.1669906904124772" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="0.061928807545921" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="14" label="14">
+        <attvalues>
+          <attvalue for="0" value="14" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="1.499" />
+          <attvalue for="3" value="2.128592229394459" />
+          <attvalue for="5" value="1.6147573958347048" />
+          <attvalue for="4" value="1.450347315576464" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="0.061928807545921" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+      <node id="15" label="15">
+        <attvalues>
+          <attvalue for="0" value="15" />
+          <attvalue for="1" value="Producer" />
+          <attvalue for="2" value="1.999" />
+          <attvalue for="3" value="2.128592229394459" />
+          <attvalue for="5" value="2.128592229394459" />
+          <attvalue for="4" value="1.500659455613257" />
+          <attvalue for="6" value="0.001" />
+          <attvalue for="7" value="0.04697940667971337" />
+          <attvalue for="8" value="0.0" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="0" source="2" target="0" />
+      <edge id="1" source="6" target="2" />
+      <edge id="2" source="7" target="6" />
+      <edge id="3" source="14" target="13" />
+      <edge id="4" source="15" target="13" />
+      <edge id="5" source="15" target="14" />
+    </edges>
+  </graph>
+</gexf>
