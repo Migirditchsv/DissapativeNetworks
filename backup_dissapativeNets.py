@@ -181,6 +181,11 @@ def find_target( node_index ):
     if (best_score > 0):
         G.add_edge(node_index,best)
     #else: print( "EDGE:",node_index," failed to find target")
+    
+def force_connect_source(target):
+    if G.node[target]["role"]=="Source": return
+    if 0 not in G.nodes: return
+    G.add_edge(target,0)
                     
 def kill_node( node_index ):
     #global niche_array
@@ -341,7 +346,7 @@ while (run_condition):
     # Update State Variables
     num_producers.append(len([x for x in G.nodes() if G.node[x]["role"] == "Producer"]))
     num_nodes.append(len(G.nodes()))
-    if nx.degree(G)[0] != 0:
+    if 0 in G.nodes:
         size_source.append(G.node[0]["volume"])
         
     total_volumes.append(np.sum([G.node[i]["volume"] for i in G.nodes() if i != 0]))
@@ -375,8 +380,18 @@ while (run_condition):
     # spawn Nodes
     
     #skip spawn if rescource has died
-    #if 0 not in G.nodes: continue
-    if nx.degree(G)[0] == 0: continue
+    if 0 not in G.nodes: continue
+    # force connect random node to seed node if disconnected
+    random_nodes = list(G.nodes())
+    np.random.shuffle(random_nodes)
+    condition = nx.degree(G)[0] <= producer_seed_number
+    while condition > 0:
+        target = random_nodes.pop(0)
+        force_connect_source(target)
+        cond_1 = nx.degree(G)[0] <= producer_seed_number
+        cond_2 = len(random_nodes) > 0
+        condition = cond_1 * cond_2
+        
     
     spawn_number = 2#m.ceil(population_size*producer_spawn_ratio)
     for spawn in range(0,spawn_number):
