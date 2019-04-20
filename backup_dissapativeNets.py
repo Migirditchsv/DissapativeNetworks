@@ -45,15 +45,15 @@ time_limit = 10**2
 
 # Regen and metabolism are seperated because we'll probably want to look at non
 #-linear metabolic/regen scaling effects at some future point. 
-source_initial_volume = 10**3
+source_initial_volume = 10**6
 producer_initial_volume = 1
 source_regen_ratio = 0
 produce_regen_ratio = 0.0
 consumer_regen_ratio = 0.0
 source_metabolic_rate = 0.0
-producer_metabolic_ratio = 0.1
+producer_metabolic_ratio = 0.005
 #consumer_metabolic_ratio = 0.1
-producer_consumption_ratio = 0.1
+producer_consumption_ratio = 0.01
 DEATH_LIMIT = 0.01
 
 #niche controls
@@ -61,9 +61,8 @@ niche_creep_rate = 0.01 # rate of increase in niche dist. mean per # of nodes
 
 #Network Growth Controls
 consumer_delay_time=100#How many time steps to wait until consumers appear
-producer_spawn_ratio=0.01
-consumer_spawn_ratio=10
-producer_seed_number = 10
+producer_spawn_ratio= 0.1 # Comment out #spawn section of grind and set to cnst if you don't want exp growth
+producer_seed_number = 5
 
 #Plotting controls
 scale_factor = 200.0 # scales node volumes
@@ -350,8 +349,8 @@ while (run_condition):
         size_source.append(G.node[0]["volume"])
         
     total_volumes.append(np.sum([G.node[i]["volume"] for i in G.nodes() if i != 0]))
-    min_niche_lb.append(min([G.node[i]["niche_lb"] for i in G.nodes() if i >= 9]))
-    max_niche_ub.append(max([G.node[i]["niche_ub"] for i in G.nodes() if i >= 9]))
+    min_niche_lb.append(min([G.node[i]["niche_lb"] for i in G.nodes() ]))
+    max_niche_ub.append(max([G.node[i]["niche_ub"] for i in G.nodes() ]))
     
     t+=1
     population = list( G.nodes() )
@@ -393,7 +392,7 @@ while (run_condition):
         condition = cond_1 * cond_2
         
     
-    spawn_number = 2#m.ceil(population_size*producer_spawn_ratio)
+    spawn_number = m.ceil(population_size*producer_spawn_ratio)
     for spawn in range(0,spawn_number):
         index_max +=1
         create_producer(index_max)
