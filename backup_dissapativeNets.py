@@ -26,6 +26,8 @@ import seaborn as sns
 import networkx as nx
 import numpy as np
 import math as m
+import scipy.stats as st
+import scipy.signal as ss
 import os
 from datetime import datetime
 
@@ -34,10 +36,13 @@ path = os.getcwd()
 time = datetime.now()
 target_dir = "run_" + str(time.hour) + ":" + str(time.minute) + "." + str(time.second) + "/"
 os.mkdir(path + "/" + target_dir)
+os.mkdir(path + "/" + target_dir + "plots")
+
+imgdir = path + "/" + target_dir + "plots/"
 
 # Globals
 ## Safety triggers
-popultion_limit = 10**5
+popultion_limit = 10**8
 time_limit = 10**2
 ## Experimental parameters
 
@@ -45,7 +50,7 @@ time_limit = 10**2
 
 # Regen and metabolism are seperated because we'll probably want to look at non
 #-linear metabolic/regen scaling effects at some future point. 
-source_initial_volume = 10**6
+source_initial_volume = 10**5
 producer_initial_volume = 1
 source_regen_ratio = 0
 produce_regen_ratio = 0.0
@@ -333,24 +338,147 @@ run_condition=1
 t=0
 index_max = producer_seed_number
 
+#Various graph property time-series
 num_producers = []
 num_nodes = []
 size_source = []
 total_volumes = []
 min_niche_lb = []
 max_niche_ub = []
+num_components = []
+global_eff = []
+local_eff = []
+mean_degree = []
+std_degree = []
+var_degree = []
+ent_degree = []
+density = []
+largest_comp = []
+avg_clustering_coeff = []
+avg_harmonic_centrality = []
+alg_conn = []
+alg_conn_norm = []
+
+node_lifetime = {}
+avg_node_clustering_coeff = {}
+avg_node_harmonic_centrality = {}
+avg_in_degree_centrality = {}
+avg_out_degree_centrality = {}
+avg_page_rank = {}
+avg_volume = {}
+
+ticker = 0
 
 while (run_condition):
 
     # Update State Variables
     num_producers.append(len([x for x in G.nodes() if G.node[x]["role"] == "Producer"]))
     num_nodes.append(len(G.nodes()))
+    
+    undir_G = nx.to_undirected(G)
+    
     if 0 in G.nodes:
         size_source.append(G.node[0]["volume"])
+    
+    
+    #Density of the graph
+    prob = len(G.edges) / ((len(G.nodes)*(len(G.nodes)-1))/2) 
+    density.append(prob)
+    
+    #Useful for finding peaks near 10 and when the resource runs out
+    peaks = ss.find_peaks(num_nodes)[0]
+    
+    #Get volumes of each node as dict
+    volumes = nx.get_node_attributes(G, "volume")
+    
+    #Dictionaries of graph properties
+    clustering_coeff = nx.clustering(G)
+    harmonic_centrality = nx.harmonic_centrality(G)
+    degs = nx.degree(G)
+    in_deg_cent = nx.in_degree_centrality(G)
+    out_deg_cent = nx.out_degree_centrality(G)
+    
+    #In and out degree seqs
+    in_deg_sequence = list(x[1] for x in G.in_degree())
+    out_deg_sequence = list(x[1] for x in G.out_degree())
+    
+    config_global_eff_list, config_local_eff_list, config_avg_clustering_coeff_list, = [], [], []
+    config_avg_harmonic_centrality_list, config_alg_conn_list = [], []
+    
+    #Making configuraiton models 
+    """
+    for i in range(1):
+        config_G = nx.directed_configuration_model(in_deg_sequence, out_deg_sequence)
+        undir_config_G = nx.Graph(nx.to_undirected(config_G))
         
+        config_global_eff_list.append(nx.global_efficiency(undir_config_G))
+        config_local_eff_list.append(nx.local_efficiency(undir_config_G))
+        config_avg_clustering_coeff_list.append(nx.average_clustering(undir_config_G))
+        config_avg_harmonic_centrality_list.append(config_G)
+        config_alg_conn_list.append(undir_config_G)
+    """
+    #Calculating average config statistics for summary stats. 
+    config_global_eff = 1#np.mean(config_global_eff_list)
+    config_local_eff = 1#np.mean(config_local_eff_list)
+    config_avg_clustering_coeff = 1#np.mean(config_avg_clustering_coeff_list)
+    config_avg_harmonic_centrality = 1#np.mean(config_avg_harmonic_centrality_list)
+    config_alg_conn = 1#np.mean(config_alg_conn_list)
+    
+    #Calculating general model descriptors
     total_volumes.append(np.sum([G.node[i]["volume"] for i in G.nodes() if i != 0]))
     min_niche_lb.append(min([G.node[i]["niche_lb"] for i in G.nodes() ]))
     max_niche_ub.append(max([G.node[i]["niche_ub"] for i in G.nodes() ]))
+    
+    #Degree-distrubtion-specific graph measures. 
+    mean_degree.append(np.mean([x[1] for x in degs if x[0] != 0]))
+    std_degree.append(np.std([x[1] for x in degs if x[0] != 0]))
+    var_degree.append(np.var([x[1] for x in degs if x[0] != 0]))
+    ent_degree.append(st.entropy([x[1] for x in degs if x[0] != 0])/len(G))
+    num_components.append(len(list(nx.connected_component_subgraphs(undir_G))))
+    largest_comp.append(len(max(nx.connected_component_subgraphs(undir_G), key=len)) / len(undir_G))
+    
+    #Measures normalized by config_models.
+    global_eff.append(nx.global_efficiency(undir_G) / config_global_eff)
+    local_eff.append(nx.local_efficiency(undir_G) / config_local_eff)
+    avg_clustering_coeff.append(nx.average_clustering(G) / config_avg_clustering_coeff)
+    avg_harmonic_centrality.append(np.mean([harmonic_centrality[i] for i in G.nodes()]) / config_avg_harmonic_centrality)
+    alg_conn_norm.append(nx.algebraic_connectivity(undir_G) / config_alg_conn)
+    alg_conn.append(nx.algebraic_connectivity(undir_G))
+    
+    for i in G.nodes():
+        if i != 0:
+            
+            if i in node_lifetime:
+                node_lifetime[i] += 1
+            elif i not in node_lifetime:
+                node_lifetime[i] = 1
+            
+            if i in avg_node_clustering_coeff:
+                avg_node_clustering_coeff[i] = avg_node_clustering_coeff[i] + (clustering_coeff[i] - avg_node_clustering_coeff[i])/ticker
+            elif i not in avg_node_clustering_coeff:
+                avg_node_clustering_coeff[i] = clustering_coeff[i]
+            
+            if i in avg_node_harmonic_centrality:
+                avg_node_harmonic_centrality[i] = avg_node_harmonic_centrality[i] + (harmonic_centrality[i] - avg_node_harmonic_centrality[i])/ticker
+            elif i not in avg_node_harmonic_centrality:
+                avg_node_harmonic_centrality[i] = harmonic_centrality[i]
+                
+            if i in avg_in_degree_centrality:
+                avg_in_degree_centrality[i] = avg_in_degree_centrality[i] + (in_deg_cent[i] - avg_in_degree_centrality[i])/ticker
+            elif i not in avg_in_degree_centrality:
+                avg_in_degree_centrality[i] = in_deg_cent[i]
+            
+            if i in avg_out_degree_centrality:
+                avg_out_degree_centrality[i] = avg_out_degree_centrality[i] + (out_deg_cent[i] - avg_out_degree_centrality[i])/ticker
+            elif i not in avg_out_degree_centrality:
+                avg_out_degree_centrality[i] = out_deg_cent[i]
+                
+            if i in avg_volume:
+                avg_volume[i] = avg_volume[i] + (volumes[i] - avg_volume[i])/ticker
+            elif i not in avg_volume:
+                avg_volume[i] = volumes[i]
+                
+    ticker += 1
     
     t+=1
     population = list( G.nodes() )
@@ -359,7 +487,7 @@ while (run_condition):
     # run through and-listed run conditions
     run_condition *= t<time_limit 
     run_condition *= population_size < popultion_limit
-    run_condition *= population_size > 2
+    run_condition *= population_size > 3
     #print( "TIME:", t,"| POPULATION:", population_size,"|",population)
     
     
@@ -398,31 +526,414 @@ while (run_condition):
         create_producer(index_max)
         find_target(index_max)        
 
+timeline = [x for x in range(ticker)]
+
 sns.set(style = "darkgrid")
+
+savefigures = True #Toggle to not save figures. 
 
 plt.subplots()
 plt.plot(size_source)
 plt.xlabel("Time")
 plt.ylabel("Source Volume")
 plt.title("Source Volume Over Time")
+if savefigures == True:
+    plt.savefig(imgdir + "volume_time.png", dpi = 250)
 
 plt.subplots()
 plt.plot(min_niche_lb, label = "Min Niche Score")
 plt.plot(max_niche_ub, label = "Max Niche Score")
 plt.xlabel("Time")
 plt.ylabel("Min/Max Niche Score")
+plt.yscale("log")
 plt.title("Niche Range")
 plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "niche.png", dpi = 250)
 
 plt.subplots()
 plt.plot(num_nodes)
+plt.plot(timeline[peaks[0]], num_nodes[peaks[0]],
+         marker="*",
+         color="black",
+         markersize="10",
+         label="First Die Off")
+plt.plot(timeline[peaks[1]], num_nodes[peaks[1]],
+         marker="X",
+         color="black",
+         markersize="10",
+         label="Exhaust Resource")
 plt.xlabel("Time")
 plt.ylabel("Population")
 plt.title("Population Over Time")
-#clean up for print
-#remove_isolates()
-#run_kill_list()
-#plotter()
-    
+plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "population.png", dpi = 250)
 
 
+plt.subplots()
+plt.plot(num_components)
+plt.plot(timeline[peaks[0]], num_components[peaks[0]],
+         marker="*",
+         color="black",
+         markersize="10",
+         label="First Die Off")
+plt.plot(timeline[peaks[1]], num_components[peaks[1]],
+         marker="X",
+         color="black",
+         markersize="10",
+         label="Exhaust Resource")
+plt.xlabel("Time")
+plt.ylabel("Count")
+plt.title("Number of Connected Components")
+if savefigures == True:
+    plt.savefig(imgdir + "num_components.png", dpi = 250)
+
+plt.subplots()
+plt.plot(largest_comp)
+plt.plot(timeline[peaks[0]], largest_comp[peaks[0]],
+         marker="*",
+         color="black",
+         markersize="10",
+         label="First Die Off")
+plt.plot(timeline[peaks[1]], largest_comp[peaks[1]],
+         marker="X",
+         color="black",
+         markersize="10",
+         label="Exhaust Resource")
+plt.xlabel("Time")
+plt.ylabel("Largest Component Percentage")
+plt.title("Largest Component")
+if savefigures == True:
+    plt.savefig(imgdir + "largest_component.png", dpi = 250)
+
+plt.subplots()
+plt.plot(global_eff)
+plt.plot(timeline[peaks[0]], global_eff[peaks[0]],
+         marker="*",
+         color="black",
+         markersize="10",
+         label="First Die Off")
+plt.plot(timeline[peaks[1]], global_eff[peaks[1]],
+         marker="X",
+         color="black",
+         markersize="10",
+         label="Exhaust Resource")
+plt.xlabel("Time")
+plt.ylabel("Global Efficiency")
+plt.title("Global Efficiency")# (Normalized w/ Config Model)")
+plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "global_efficiency.png", dpi = 250)
+
+plt.subplots()
+plt.plot(local_eff)
+plt.plot(timeline[peaks[0]], local_eff[peaks[0]],
+         marker="*",
+         color="black",
+         markersize="10",
+         label="First Die Off")
+plt.plot(timeline[peaks[1]], local_eff[peaks[1]],
+         marker="X",
+         color="black",
+         markersize="10",
+         label="Exhaust Resource")
+plt.xlabel("Time")
+plt.ylabel("Local Efficiency")
+plt.title("Local Efficiency")# (Normalized w/ Config Model)")
+plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "local_efficiency.png", dpi = 250)
+
+plt.subplots()
+plt.plot(avg_harmonic_centrality)
+plt.plot(timeline[peaks[0]], avg_harmonic_centrality[peaks[0]],
+         marker="*",
+         color="black",
+         markersize="10",
+         label="First Die Off")
+plt.plot(timeline[peaks[1]], avg_harmonic_centrality[peaks[1]],
+         marker="X",
+         color="black",
+         markersize="10",
+         label="Exhaust Resource")
+plt.xlabel("Time")
+plt.ylabel("Average Harmonic Centrality")
+plt.title("Average Harmonic Centrality")# (Normalized w/ Config Model)")
+plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "harmonic_centrality.png", dpi = 250)
+
+plt.subplots()
+plt.plot(avg_clustering_coeff)
+plt.plot(timeline[peaks[0]], avg_clustering_coeff[peaks[0]],
+         marker="*",
+         color="black",
+         markersize="10",
+         label="First Die Off")
+plt.plot(timeline[peaks[1]], avg_clustering_coeff[peaks[1]],
+         marker="X",
+         color="black",
+         markersize="10",
+         label="Exhaust Resource")
+plt.xlabel("Time")
+plt.ylabel("Average Clustering Coefficint")
+plt.title("Average Clustering Coefficient")# (Normalized w/ Config Model)")
+plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "clustering_coeff.png", dpi = 250)
+
+plt.subplots()
+plt.plot(mean_degree, label = "Mean Degree")
+plt.plot([mean_degree[x] + std_degree[x] for x in range(len(mean_degree))],
+          color = "darkgreen",
+          linestyle = "--", 
+          linewidth = 1,
+          label = "Standard Deviation of Degree")
+plt.plot([mean_degree[x] - std_degree[x] for x in range(len(mean_degree))],
+          color = "darkgreen",
+          linestyle = "--",
+          linewidth = 1)
+plt.plot(timeline[peaks[0]], mean_degree[peaks[0]],
+         marker="*",
+         color="black",
+         markersize="10",
+         label="First Die Off")
+plt.plot(timeline[peaks[1]], mean_degree[peaks[1]],
+         marker="X",
+         color="black",
+         markersize="10",
+         label="Exhaust Resource")
+plt.xlabel("Time")
+plt.ylabel("Mean Degree")
+plt.title("Mean Degree")
+plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "mean_std_degree.png", dpi = 250)
+
+plt.subplots()
+plt.plot(var_degree)
+plt.plot(timeline[peaks[0]], var_degree[peaks[0]],
+         marker="*",
+         color="black",
+         markersize="10",
+         label="First Die Off")
+plt.plot(timeline[peaks[1]], var_degree[peaks[1]],
+         marker="X",
+         color="black",
+         markersize="10",
+         label="Exhaust Resource")
+plt.xlabel("Time")
+plt.ylabel("Degree Variance")
+plt.title("Variance in Degree Distribution")
+plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "variance_degree.png", dpi = 250)
+
+plt.subplots()
+plt.plot(ent_degree)
+plt.plot(timeline[peaks[0]], ent_degree[peaks[0]],
+         marker="*",
+         color="black",
+         markersize="10",
+         label="First Die Off")
+plt.plot(timeline[peaks[1]], ent_degree[peaks[1]],
+         marker="X",
+         color="black",
+         markersize="10",
+         label="Exhaust Resource")
+plt.xlabel("Time")
+plt.ylabel("Entropy")
+plt.title("Entropy of Degree Distribution")
+plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "entropy_degree.png", dpi = 250)
+
+plt.subplots()
+plt.plot(density)
+plt.plot(timeline[peaks[0]], density[peaks[0]],
+         marker="*",
+         color="black",
+         markersize="10",
+         label="First Die Off")
+plt.plot(timeline[peaks[1]], density[peaks[1]],
+         marker="X",
+         color="black",
+         markersize="10",
+         label="Exhaust Resource")
+plt.xlabel("Time")
+plt.ylabel("Density")
+plt.title("Graph Density Over Time")
+plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "density.png", dpi = 250)
+
+plt.subplots()
+plt.scatter(list(node_lifetime.keys()), list(node_lifetime.values()),
+            c = list(node_lifetime.keys()), cmap = "winter", label = "Creation Order")
+plt.xlabel("Node Creation Order")
+plt.ylabel("Node Lifetime")
+plt.title("Creation Order vs. Node Lifetime")
+plt.colorbar(label = "Creation Order")
+if savefigures == True:
+    plt.savefig(imgdir + "creation_order_lifetimes.png", dpi = 250)
+
+plt.subplots()
+plt.scatter(list(avg_node_clustering_coeff.values()), list(node_lifetime.values()),
+            c = list(node_lifetime.keys()), cmap = "winter", label = "Creation Order")
+plt.xlabel("Average Clustering Coefficient")
+plt.ylabel("Node Lifetime")
+plt.title("Clustering Coefficient vs. Node Lifetime")
+plt.colorbar(label = "Creation Order")
+if savefigures == True:
+    plt.savefig(imgdir + "clustering_lifetimes.png", dpi = 250)
+
+plt.subplots()
+plt.scatter(list(avg_node_harmonic_centrality.values()), list(node_lifetime.values()),
+            c = list(node_lifetime.keys()), cmap = "winter", label = "Creation Order")
+plt.xlabel("Average Harmonic Centrality")
+plt.ylabel("Node Lifetime")
+plt.title("Harmonic Centrality vs. Node Lifetime")
+plt.colorbar(label = "Creation Order")
+if savefigures == True:
+    plt.savefig(imgdir + "harmonic_lifetimes.png", dpi = 250)
+
+plt.subplots()
+plt.scatter(list(avg_in_degree_centrality.values()), list(node_lifetime.values()),
+            c = list(node_lifetime.keys()), cmap = "winter", label = "Creation Order")
+plt.xlabel("Average In-Degree Centrality")
+plt.ylabel("Node Lifetime")
+plt.title("In-Degree Centrality vs. Node Lifetime")
+plt.colorbar(label = "Creation Order")
+if savefigures == True:
+    plt.savefig(imgdir + "in_degree_lifetimes.png", dpi = 250)
+
+plt.subplots()
+plt.scatter(list(avg_out_degree_centrality.values()), list(node_lifetime.values()),
+            c = list(node_lifetime.keys()), cmap = "winter", label = "Creation Order")
+plt.xlabel("Average Out-Degree Centrality")
+plt.ylabel("Node Lifetime")
+plt.title("Out-Degree Centrality vs. Node Lifetime")
+plt.colorbar(label = "Creation Order")
+if savefigures == True:
+    plt.savefig(imgdir + "out_degree_lifetimes.png", dpi = 250)
+
+plt.subplots()
+plt.scatter(list(avg_volume.values()), list(node_lifetime.values()),
+            c = list(node_lifetime.keys()), cmap = "winter", label = "Creation Order")
+plt.xlabel("Average Node Volume")
+plt.ylabel("Node Lifetime")
+plt.colorbar(label = "Creation Order")
+plt.title("Average Node Volume vs. Node Lifetime")
+if savefigures == True:
+    plt.savefig(imgdir + "volume_lifetimes.png", dpi = 250)
+
+plt.subplots()
+plt.plot(alg_conn)
+plt.plot(timeline[peaks[0]], alg_conn_norm[peaks[0]],
+         marker="*",
+         color="black",
+         markersize="10",
+         label="First Die Off")
+plt.plot(timeline[peaks[1]], alg_conn_norm[peaks[1]],
+         marker="X",
+         color="black",
+         markersize="10",
+         label="Exhaust Resource")
+plt.xlabel("Time")
+plt.ylabel("Algebraic Connectivity")
+plt.title("Algebraic Connectivity")#(Normalized w/ Config Model)")
+plt.legend()
+#plt.ylim([-0.01,0.25])
+if savefigures == True:
+    plt.savefig(imgdir + "alg_conn.png", dpi = 250)
+
+plt.subplots()
+plt.scatter(ent_degree, var_degree, c = timeline, cmap = "autumn_r")
+plt.plot(ent_degree[peaks[0]], var_degree[peaks[0]], 
+         marker="*", 
+         color = "black", 
+         markersize = 10, label = "First Die-Off")
+plt.plot(ent_degree[peaks[1]], var_degree[peaks[1]], 
+         marker="X", 
+         color = "black", 
+         markersize = 10, label = "Exhaust Resource")
+plt.xlabel("Entropy of Degree Distribution")
+plt.ylabel("Variance in Degree Distribution")
+plt.title("Entropy vs. Variance Over Time")
+plt.colorbar(label = "Time" )
+plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "ent_var_degree.png", dpi = 250)
+
+plt.subplots()
+plt.plot(ent_degree[peaks[0]], alg_conn[peaks[0]], 
+         marker="*", 
+         color = "black", 
+         markersize = 10, label = "First Die-Off")
+plt.plot(ent_degree[peaks[1]], alg_conn[peaks[1]], 
+         marker="X", 
+         color = "black", 
+         markersize = 10, label = "Exhaust Resource")
+plt.scatter(ent_degree, alg_conn, c = timeline, cmap = "autumn_r")
+plt.xlabel("Entropy of Degree Distribution")
+plt.ylabel("Algebraic Connectivity")
+plt.title("Entropy vs. Algebraic Connectivity Over Time")
+plt.colorbar(label = "Time" )
+plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "ent_alg_conn.png", dpi = 250)
+
+plt.subplots()
+plt.plot(var_degree[peaks[0]], alg_conn[peaks[0]], 
+         marker="*", 
+         color = "black", 
+         markersize = 10, label = "First Die-Off")
+plt.plot(var_degree[peaks[1]], alg_conn[peaks[1]], 
+         marker="X", 
+         color = "black", 
+         markersize = 10, label = "Exhaust Resource")
+plt.scatter(var_degree, alg_conn, c = timeline, cmap = "autumn_r")
+plt.xlabel("Variance of Degree Distribution")
+plt.ylabel("Algebraic Connectivity")
+plt.title("Variance vs. Algebraic Connectivity Over Time")
+plt.colorbar(label = "Time" )
+plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "var_alg_conn.png", dpi = 250)
+
+plt.subplots()
+plt.plot(ent_degree[peaks[0]], mean_degree[peaks[0]], 
+         marker="*", 
+         color = "black", 
+         markersize = 10, label = "First Die-Off")
+plt.plot(ent_degree[peaks[1]], mean_degree[peaks[1]], 
+         marker="X", 
+         color = "black", 
+         markersize = 10, label = "Exhaust Resource")
+plt.scatter(ent_degree, mean_degree, c = timeline, cmap = "autumn_r")
+plt.xlabel("Entropy of Degree Distribution")
+plt.ylabel("Mean Degree")
+plt.title("Entropy vs. Mean Degree Over Time")
+plt.colorbar(label = "Time" )
+plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "ent_mean_degree.png", dpi = 250)
+
+plt.subplots()
+plt.plot(alg_conn[peaks[0]], mean_degree[peaks[0]], 
+         marker="*", 
+         color = "black", 
+         markersize = 10, label = "First Die-Off")
+plt.plot(alg_conn[peaks[1]], mean_degree[peaks[1]], 
+         marker="X", 
+         color = "black", 
+         markersize = 10, label = "Exhaust Resource")
+plt.scatter(alg_conn, mean_degree, c = timeline, cmap = "autumn_r")
+plt.xlabel("Algebraic Connectivity")
+plt.ylabel("Mean Degree")
+plt.title("Algebraic Connectivity vs. Mean Degree Over Time")
+plt.colorbar(label = "Time" )
+plt.legend()
+if savefigures == True:
+    plt.savefig(imgdir + "alg_conn_mean_degree.png", dpi = 250)

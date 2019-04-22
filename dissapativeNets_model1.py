@@ -378,7 +378,7 @@ while (run_condition):
     #if 0 not in G.nodes: continue
     if nx.degree(G)[0] == 0: continue
     
-    spawn_number = m.ceil(population_size*producer_spawn_ratio)
+    spawn_number = 2#m.ceil(population_size*producer_spawn_ratio)
     for spawn in range(0,spawn_number):
         index_max +=1
         create_producer(index_max)
@@ -405,5 +405,10 @@ plt.plot(num_nodes)
 plt.xlabel("Time")
 plt.ylabel("Population")
 plt.title("Population Over Time")
+#clean up for print
+#remove_isolates()
+#run_kill_list()
+#plotter()
+    
 
 
