@@ -72,6 +72,8 @@ producer_seed_number = 5
 #Plotting controls
 scale_factor = 200.0 # scales node volumes
 plot_frequency = 1
+savefigures = False #Toggle to not save figures. 
+
 
 #Global indicies and trakcers
 max_niche_score = 0.0 
@@ -284,7 +286,7 @@ def plotter(target_dir, show = True):
         if (role=="Source"):
             color = "green"
         elif (role=="Producer"):
-            color = "blue"
+            color = "cornflowerblue"
         elif (role=="consumer"):
             color = "red"
         else: 
@@ -522,15 +524,15 @@ while (run_condition):
     
     spawn_number = m.ceil(population_size*producer_spawn_ratio)
     for spawn in range(0,spawn_number):
-        index_max +=1
         create_producer(index_max)
-        find_target(index_max)        
+        find_target(index_max)
+        index_max +=1
+        
 
 timeline = [x for x in range(ticker)]
 
 sns.set(style = "darkgrid")
 
-savefigures = True #Toggle to not save figures. 
 
 plt.subplots()
 plt.plot(size_source)
