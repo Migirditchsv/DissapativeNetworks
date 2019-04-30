@@ -1,9 +1,46 @@
 \relax 
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}The Model}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Analyses}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Whole-Network Measures}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The number of nodes in the network through time. Notice that there are two local maxima: an early die-off, indicated with a $\star $, and the global maxima, indicated with an \textbf  {\textsf  {x}}}}{2}}
+\newlabel{population}{{1}{2}}
+\citation{bassett_adaptive_2006}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Correlating Measures Through Time}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Node Characteristics \& Lifetimes}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}A Note on Null Models}{4}}
 \bibstyle{unsrt}
 \bibdata{Dissipative_Structures.bib}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Materials \& Methods}{1}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Whole-Network Measures}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Node Characteristics \& Lifetimes}{1}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusions}{1}}
+\bibcite{bassett_adaptive_2006}{{1}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusions}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The mean degree of the network at each timestep $\pm $ one standard deviation and the variance of the distrubiton at each moment. As with the population, two distinct local maxima are visible: both the mean degree and the variance in the degree distribution peak immediately before the early die-off and then collapse, before recovering to a smaller, broader peak at the moment of resource exhaustion.}}{6}}
+\newlabel{mean-std}{{2}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces The normalized Shannon entropy of the degree distribution over time. In contrast to other measures like variance or mean degree, normalized entropy falls as the network develops. }}{7}}
+\newlabel{entropy}{{3}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The number of connected components in the network over time, and the fraction of the total number of nodes contained in the largest component over time. In the upper plot, we can see that the network maintains a single, core component throughout most of it's life (the small bumps between time 10 and 20 are new nodes that have been added, but not yet connected to the main core). The network remains a single, connected component until what seems to be a critical point near time 50, at which point it quickly fragments into many smaller components, few of which dominate the set the available nodes.}}{8}}
+\newlabel{components}{{4}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The density of the graph, defined as the number of existing edges, normalized by the total number of possible edges. The spike in density before the initial die-off was unexpected, although the later spike is more easily explained, as the number of nodes in the network shrinks to nothing, so the number of possible edges does as well.}}{9}}
+\newlabel{density}{{5}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The algebraic connectivity of the graph over time. Algebraic connectivity is greater than 0 only when the graph is fully connected, so any moment where the graph is not, the plot drops to zero. The moments between time 10 and 20 where the plot drops match the brief moments of disconnection that can be seen in Figure 4\hbox {}. Despite these brief drops, an overall pattern is clearly visible: algebraic connectivity spikes just prior to the initial die-off, and then falls, slowing as the graph reaches it's maximal size. Most interestingly, algebraic connectivity begins to drop more precipitously right before the graph becomes fully disconnected, suggesting that it may predict total collapse slightly before it begins.}}{9}}
+\newlabel{alg-conn}{{6}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces text}}{10}}
+\newlabel{harmonic}{{7}{10}}
+\newlabel{efficiency}{{4.1}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces At every moment in time, the mean degree of the network, plotted against the normalized entropy of the degree distribution. The pattern begins with the most saturated yellow points, and transitions through orange to red. Note the two spikes, or sharp turns, at each of the key events, the die-off and the exhaustion of the resource nodes.}}{12}}
+\newlabel{entropy-mean}{{8}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces The variance of the degree distribution at each moment in time plotted as a function of the entropy of the degree distribution. Here, two competing dynamics are visible: variance spikes dramatically near the initial die-off, while entropy is less affected and continues to drift downwards, until the resource node is exhausted, at which point, entropy begins to climb again, while variance falls.}}{12}}
+\newlabel{entropy-variance}{{9}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The algebraic connectivity of the network at each moment in time as a function of the entropy of the degree distribution. While the trajectory is not as clean as what is visible in Figures 8\hbox {} or 9\hbox {}, a clear pattern is visible. The algebraic connectivity over time is a noisier signal.}}{13}}
+\newlabel{entropy-algconn}{{10}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Simple null models plotting the relationship between entropy, mean degree, variance in degree, and algebraic connectivity of an ensemble of 25 Erdos-Renyi graphs with 50 degrees each, created with probabilities between 0.1 and 0.9}}{13}}
+\newlabel{entropy-nulls}{{11}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces The lifetime of a node (how many timesteps it persisted for), plotted as a function of the order of it's creation. Node the small cluster of very early nodes with short lifetimes that are distinct from the larger set.}}{14}}
+\newlabel{order-lifetime}{{12}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces The average harmonic centrality of every node, plotted against the lifetime of that node, and colored based on the node creation order. As with other plots of this type, notice a small group of early nodes that don't live very long and have low harmonic centrality. There are the nodes that come into being before the initial die-off. After the die-off, an trajectory emerges, where all subsequently created nodes have roughly similar lifetimes, however, nodes created later have almost uniformly decreases average harmonic centralities. This may be reflective of the entropy described by Figure 3\hbox {}, where as time goes on, the network becomes more 'lattice-like', which less obviously central nodes.}}{14}}
+\newlabel{harmonic-lifetime}{{13}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Here the average in- and out-degrees are plotted as a function of the node lifetime, and colored by creation order. As with other plots of this type, there is a subset of nodes created early in the history of the system that die quickly, but have high degree centralities. After the initial die-off, subsequently created nodes don't show a strong relationship between degree centrality and lifetime, although there seems to be a strong trend that nodes created later have lower in- and out-degree centralities. This is consistent with he overall homogenization described in Figures 3\hbox {} and 13\hbox {}.}}{15}}
+\newlabel{degree-lifetime}{{14}{15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Here, the average volume of a node over the course of it's life is plotted against it's lifetime. In contrast to the various centrality plots, where after the die-off there was not a consistent relationship between metric and lifetime, here there seems to be a global, logarithmic relationship between node volume and lifetime (although the break between pre-die-off nodes and post-die-off nodes is still evident), although creation order is less tightly related to either lifetime or volume here.}}{16}}
+\newlabel{volume-lifetime}{{15}{16}}

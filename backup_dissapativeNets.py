@@ -50,7 +50,7 @@ time_limit = 10**2
 
 # Regen and metabolism are seperated because we'll probably want to look at non
 #-linear metabolic/regen scaling effects at some future point. 
-source_initial_volume = 10**5
+source_initial_volume = 10**8
 producer_initial_volume = 1
 source_regen_ratio = 0
 produce_regen_ratio = 0.0
@@ -67,12 +67,12 @@ niche_creep_rate = 0.01 # rate of increase in niche dist. mean per # of nodes
 #Network Growth Controls
 consumer_delay_time=100#How many time steps to wait until consumers appear
 producer_spawn_ratio= 0.1 # Comment out #spawn section of grind and set to cnst if you don't want exp growth
-producer_seed_number = 5
+producer_seed_number = 10
 
 #Plotting controls
 scale_factor = 200.0 # scales node volumes
 plot_frequency = 1
-savefigures = False #Toggle to not save figures. 
+savefigures = True #Toggle to not save figures. 
 
 
 #Global indicies and trakcers
