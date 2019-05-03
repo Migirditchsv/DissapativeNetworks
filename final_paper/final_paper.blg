@@ -1,46 +1,46 @@
-This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+This is BibTeX, Version 0.99d (TeX Live 2018)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: final_paper.aux
 The style file: unsrt.bst
-Database file #1: Dissipative_Structures.bib.bib
-You've used 1 entry,
+Database file #1: Dissipative_Structures.bib
+You've used 5 entries,
             1791 wiz_defined-function locations,
-            453 strings with 3821 characters,
-and the built_in function-call counts, 337 in all, are:
-= -- 28
-> -- 17
+            483 strings with 4394 characters,
+and the built_in function-call counts, 1200 in all, are:
+= -- 112
+> -- 41
 < -- 0
-+ -- 6
-- -- 5
-* -- 34
-:= -- 59
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 1
++ -- 16
+- -- 11
+* -- 103
+:= -- 195
+add.period$ -- 16
+call.type$ -- 5
+change.case$ -- 5
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 9
-empty$ -- 29
-format.name$ -- 5
-if$ -- 67
+cite$ -- 5
+duplicate$ -- 44
+empty$ -- 118
+format.name$ -- 11
+if$ -- 255
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 8
-num.names$ -- 1
-pop$ -- 1
+int.to.str$ -- 5
+missing$ -- 5
+newline$ -- 29
+num.names$ -- 5
+pop$ -- 4
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 3
+skip$ -- 18
 stack$ -- 0
-substring$ -- 37
-swap$ -- 1
+substring$ -- 114
+swap$ -- 5
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 3
-width$ -- 2
-write$ -- 13
+while$ -- 12
+width$ -- 6
+write$ -- 59

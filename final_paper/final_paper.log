@@ -1,28 +1,27 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.11)  30 APR 2019 13:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.2.11)  2 MAY 2019 20:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **final_paper.tex
 (./final_paper.tex
-LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 29 language(s) loaded.
+LaTeX2e <2018-04-01> patch level 5
 (/usr/share/texlive/texmf-dist/tex/latex/paper/paper.cls
 Document Class: paper 2008/05/30 1.0l LaTeX document class (wm).
-\hours=\count79
-\minutes=\count80
+\hours=\count80
+\minutes=\count81
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \beforetitlespace=\skip41
-\c@part=\count81
-\c@section=\count82
-\c@subsection=\count83
-\c@subsubsection=\count84
-\c@paragraph=\count85
-\c@subparagraph=\count86
+\c@part=\count82
+\c@section=\count83
+\c@subsection=\count84
+\c@subsubsection=\count85
+\c@paragraph=\count86
+\c@subparagraph=\count87
 \exampleindent=\skip42
-\c@figure=\count87
-\c@table=\count88
+\c@figure=\count88
+\c@table=\count89
 \abovecaptionskip=\skip43
 \belowcaptionskip=\skip44
 \bibindent=\dimen102
@@ -31,26 +30,25 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2010/09/12 v5.6 Page Geometry
+Package: geometry 2018/04/16 v5.8 Page Geometry
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
 )
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
-Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
 (/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count89
-\Gm@cntv=\count90
-\c@Gm@tempcnt=\count91
+\Gm@cnth=\count90
+\Gm@cntv=\count91
+\c@Gm@tempcnt=\count92
 \Gm@bindingoffset=\dimen103
 \Gm@wd@mp=\dimen104
 \Gm@odd@mp=\dimen105
@@ -62,7 +60,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@dimlist=\toks15
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2016/03/03 v2.15a AMS math features
+Package: amsmath 2017/09/02 v2.17a AMS math features
 \@mathmargin=\skip45
 
 For additional information on amsmath, use the `?' option.
@@ -79,32 +77,32 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen112
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
-Package: amsopn 1999/12/14 v2.01 operator names
+Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count92
-LaTeX Info: Redefining \frac on input line 199.
-\uproot@=\count93
-\leftroot@=\count94
-LaTeX Info: Redefining \overline on input line 297.
-\classnum@=\count95
-\DOTSCASE@=\count96
-LaTeX Info: Redefining \ldots on input line 394.
-LaTeX Info: Redefining \dots on input line 397.
-LaTeX Info: Redefining \cdots on input line 518.
+\inf@bad=\count93
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count94
+\leftroot@=\count95
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count96
+\DOTSCASE@=\count97
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
 \Mathstrutbox@=\box26
 \strutbox@=\box27
 \big@size=\dimen113
-LaTeX Font Info:    Redeclaring font encoding OML on input line 630.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
-\macc@depth=\count97
-\c@MaxMatrixCols=\count98
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count98
+\c@MaxMatrixCols=\count99
 \dotsspace@=\muskip10
-\c@parentequation=\count99
-\dspbrk@lvl=\count100
+\c@parentequation=\count100
+\dspbrk@lvl=\count101
 \tag@help=\toks17
-\row@=\count101
-\column@=\count102
-\maxfields@=\count103
+\row@=\count102
+\column@=\count103
+\maxfields@=\count104
 \andhelp@=\toks18
 \eqnshift@=\dimen114
 \alignsep@=\dimen115
@@ -116,40 +114,32 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
 \multlinegap=\skip46
 \multlinetaggap=\skip47
 \mathdisplay@stack=\toks20
-LaTeX Info: Redefining \[ on input line 2735.
-LaTeX Info: Redefining \] on input line 2736.
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip48
 \bibsep=\skip49
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count104
+\c@NAT@ctr=\count105
 )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2016/01/03 v1.0q Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
-File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 95.
+Package graphics Info: Driver file: pdftex.def on input line 99.
 
-(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count105
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen120
 \Gin@req@width=\dimen121
@@ -161,21 +151,55 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box28
 \@float@everytoks=\toks22
 \@floatcapt=\box29
-) (./final_paper.aux)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count107
+\lst@gtempboxa=\box30
+\lst@token=\toks23
+\lst@length=\count108
+\lst@currlwidth=\dimen122
+\lst@column=\count109
+\lst@pos=\count110
+\lst@lostspace=\dimen123
+\lst@width=\dimen124
+\lst@newlines=\count111
+\lst@lineno=\count112
+\lst@maxwidth=\dimen125
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count113
+\lst@skipnumbers=\count114
+\lst@framebox=\box31
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+)
+(./final_paper.aux)
 \openout1 = `final_paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -211,303 +235,466 @@ LaTeX Font Info:    ... okay on input line 13.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count107
-\scratchdimen=\dimen122
-\scratchbox=\box30
-\nofMPsegments=\count108
-\nofMParguments=\count109
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count110
-\MPscratchDim=\dimen123
-\MPnumerator=\count111
-\makeMPintoPDFobject=\count112
-\everyMPtoPDFconversion=\toks24
-) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+\scratchcounter=\count115
+\scratchdimen=\dimen126
+\scratchbox=\box32
+\nofMPsegments=\count116
+\nofMParguments=\count117
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count118
+\MPscratchDim=\dimen127
+\MPnumerator=\count119
+\makeMPintoPDFobject=\count120
+\everyMPtoPDFconversion=\toks25
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 )
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2018/01/30 v0.27 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
-
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-))
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
 Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
+(grfext)             \AppendGraphicsExtensions on input line 456.
 
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+\c@lstlisting=\count121
+
 [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<images/population.png, id=15, 433.62pt x 289.08pt>
+{/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}]
+<images/population.png, id=10, 433.62pt x 289.08pt>
 File: images/population.png Graphic file (type png)
-
 <use images/population.png>
-Package pdftex.def Info: images/population.png used on input line 41.
+Package pdftex.def Info: images/population.png  used on input line 46.
 (pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
-<images/mean_std_degree.png, id=17, 433.62pt x 289.08pt>
+ [2 <./images/population.png>]
+<images/mean_std_degree.png, id=24, 433.62pt x 289.08pt>
 File: images/mean_std_degree.png Graphic file (type png)
-
 <use images/mean_std_degree.png>
-Package pdftex.def Info: images/mean_std_degree.png used on input line 50.
+Package pdftex.def Info: images/mean_std_degree.png  used on input line 55.
 (pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
-<images/variance_degree.png, id=18, 433.62pt x 289.08pt>
+<images/variance_degree.png, id=25, 433.62pt x 289.08pt>
 File: images/variance_degree.png Graphic file (type png)
-
 <use images/variance_degree.png>
-Package pdftex.def Info: images/variance_degree.png used on input line 51.
+Package pdftex.def Info: images/variance_degree.png  used on input line 56.
 (pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2 <./images/population.png>]
-<images/entropy_degree.png, id=26, 433.62pt x 289.08pt>
+ [3 <./images/mean_std_degree.png> <./images/variance_degree.png>]
+<images/entropy_degree.png, id=31, 433.62pt x 289.08pt>
 File: images/entropy_degree.png Graphic file (type png)
-
 <use images/entropy_degree.png>
-Package pdftex.def Info: images/entropy_degree.png used on input line 60.
+Package pdftex.def Info: images/entropy_degree.png  used on input line 65.
 (pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<images/num_components.png, id=27, 433.62pt x 289.08pt>
+<images/num_components.png, id=32, 433.62pt x 289.08pt>
 File: images/num_components.png Graphic file (type png)
-
 <use images/num_components.png>
-Package pdftex.def Info: images/num_components.png used on input line 69.
+Package pdftex.def Info: images/num_components.png  used on input line 74.
 (pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
-<images/largest_component.png, id=28, 433.62pt x 289.08pt>
+<images/largest_component.png, id=33, 433.62pt x 289.08pt>
 File: images/largest_component.png Graphic file (type png)
-
 <use images/largest_component.png>
-Package pdftex.def Info: images/largest_component.png used on input line 70.
+Package pdftex.def Info: images/largest_component.png  used on input line 75.
 (pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<images/density.png, id=29, 433.62pt x 289.08pt>
+[4 <./images/entropy_degree.png>]
+<images/density.png, id=38, 433.62pt x 289.08pt>
 File: images/density.png Graphic file (type png)
- <use images/density.png>
-Package pdftex.def Info: images/density.png used on input line 79.
+<use images/density.png>
+Package pdftex.def Info: images/density.png  used on input line 84.
 (pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<images/alg_conn.png, id=30, 433.62pt x 289.08pt>
+<images/alg_conn.png, id=39, 433.62pt x 289.08pt>
 File: images/alg_conn.png Graphic file (type png)
- <use images/alg_conn.png>
-Package pdftex.def Info: images/alg_conn.png used on input line 88.
+<use images/alg_conn.png>
+Package pdftex.def Info: images/alg_conn.png  used on input line 93.
 (pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<images/harmonic_centrality.png, id=31, 433.62pt x 289.08pt>
+<images/harmonic_centrality.png, id=40, 433.62pt x 289.08pt>
 File: images/harmonic_centrality.png Graphic file (type png)
-
 <use images/harmonic_centrality.png>
-Package pdftex.def Info: images/harmonic_centrality.png used on input line 95.
-(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<images/local_efficiency.png, id=32, 433.62pt x 289.08pt>
-File: images/local_efficiency.png Graphic file (type png)
-
-<use images/local_efficiency.png>
-Package pdftex.def Info: images/local_efficiency.png used on input line 102.
-(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
-<images/global_efficiency.png, id=33, 433.62pt x 289.08pt>
-File: images/global_efficiency.png Graphic file (type png)
-
-<use images/global_efficiency.png>
-Package pdftex.def Info: images/global_efficiency.png used on input line 103.
-(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<images/ent_mean_degree.png, id=34, 433.62pt x 289.08pt>
-File: images/ent_mean_degree.png Graphic file (type png)
-
-<use images/ent_mean_degree.png>
-Package pdftex.def Info: images/ent_mean_degree.png used on input line 113.
-(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<images/ent_var_degree.png, id=35, 433.62pt x 289.08pt>
-File: images/ent_var_degree.png Graphic file (type png)
-
-<use images/ent_var_degree.png>
-Package pdftex.def Info: images/ent_var_degree.png used on input line 122.
-(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[3] <images/ent_alg_conn.png, id=39, 433.62pt x 289.08pt>
-File: images/ent_alg_conn.png Graphic file (type png)
-
-<use images/ent_alg_conn.png>
-Package pdftex.def Info: images/ent_alg_conn.png used on input line 131.
-(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<images/null_ent_mean.png, id=40, 385.44pt x 279.0425pt>
-File: images/null_ent_mean.png Graphic file (type png)
-
-<use images/null_ent_mean.png>
-Package pdftex.def Info: images/null_ent_mean.png used on input line 138.
-(pdftex.def)             Requested size: 192.71953pt x 139.5209pt.
-
-<images/null_ent_var.png, id=41, 423.5825pt x 279.0425pt>
-File: images/null_ent_var.png Graphic file (type png)
-
-<use images/null_ent_var.png>
-Package pdftex.def Info: images/null_ent_var.png used on input line 139.
-(pdftex.def)             Requested size: 211.79073pt x 139.5209pt.
-
-<images/null_ent_alg_conn.png, id=42, 414.54875pt x 279.0425pt>
-File: images/null_ent_alg_conn.png Graphic file (type png)
-
-<use images/null_ent_alg_conn.png>
-Package pdftex.def Info: images/null_ent_alg_conn.png used on input line 140.
-(pdftex.def)             Requested size: 207.27386pt x 139.5209pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<images/creation_order_lifetimes.png, id=43, 433.62pt x 289.08pt>
-File: images/creation_order_lifetimes.png Graphic file (type png)
-
-<use images/creation_order_lifetimes.png>
-Package pdftex.def Info: images/creation_order_lifetimes.png used on input line
- 154.
-(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<images/harmonic_lifetimes.png, id=44, 433.62pt x 289.08pt>
-File: images/harmonic_lifetimes.png Graphic file (type png)
-
-<use images/harmonic_lifetimes.png>
-Package pdftex.def Info: images/harmonic_lifetimes.png used on input line 161.
-(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<images/in_degree_lifetimes.png, id=45, 433.62pt x 289.08pt>
-File: images/in_degree_lifetimes.png Graphic file (type png)
-
-<use images/in_degree_lifetimes.png>
-Package pdftex.def Info: images/in_degree_lifetimes.png used on input line 168.
-
-(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
-
-<images/out_degree_lifetimes.png, id=46, 433.62pt x 289.08pt>
-File: images/out_degree_lifetimes.png Graphic file (type png)
-
-<use images/out_degree_lifetimes.png>
-Package pdftex.def Info: images/out_degree_lifetimes.png used on input line 169
+Package pdftex.def Info: images/harmonic_centrality.png  used on input line 100
 .
 (pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/local_efficiency.png, id=41, 433.62pt x 289.08pt>
+File: images/local_efficiency.png Graphic file (type png)
+<use images/local_efficiency.png>
+Package pdftex.def Info: images/local_efficiency.png  used on input line 107.
+(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
+<images/global_efficiency.png, id=42, 433.62pt x 289.08pt>
+File: images/global_efficiency.png Graphic file (type png)
+<use images/global_efficiency.png>
+Package pdftex.def Info: images/global_efficiency.png  used on input line 108.
+(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<images/volume_lifetimes.png, id=47, 433.62pt x 289.08pt>
-File: images/volume_lifetimes.png Graphic file (type png)
+<images/ent_mean_degree.png, id=43, 433.62pt x 289.08pt>
+File: images/ent_mean_degree.png Graphic file (type png)
+<use images/ent_mean_degree.png>
+Package pdftex.def Info: images/ent_mean_degree.png  used on input line 118.
+(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
 
-<use images/volume_lifetimes.png>
-Package pdftex.def Info: images/volume_lifetimes.png used on input line 176.
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/ent_var_degree.png, id=44, 433.62pt x 289.08pt>
+File: images/ent_var_degree.png Graphic file (type png)
+<use images/ent_var_degree.png>
+Package pdftex.def Info: images/ent_var_degree.png  used on input line 127.
+(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/ent_alg_conn.png, id=45, 433.62pt x 289.08pt>
+File: images/ent_alg_conn.png Graphic file (type png)
+<use images/ent_alg_conn.png>
+Package pdftex.def Info: images/ent_alg_conn.png  used on input line 136.
+(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/null_ent_mean.png, id=46, 385.44pt x 279.0425pt>
+File: images/null_ent_mean.png Graphic file (type png)
+<use images/null_ent_mean.png>
+Package pdftex.def Info: images/null_ent_mean.png  used on input line 143.
+(pdftex.def)             Requested size: 192.71953pt x 139.5209pt.
+<images/null_ent_var.png, id=47, 423.5825pt x 279.0425pt>
+File: images/null_ent_var.png Graphic file (type png)
+<use images/null_ent_var.png>
+Package pdftex.def Info: images/null_ent_var.png  used on input line 144.
+(pdftex.def)             Requested size: 211.79073pt x 139.5209pt.
+<images/null_ent_alg_conn.png, id=48, 414.54875pt x 279.0425pt>
+File: images/null_ent_alg_conn.png Graphic file (type png)
+<use images/null_ent_alg_conn.png>
+Package pdftex.def Info: images/null_ent_alg_conn.png  used on input line 145.
+(pdftex.def)             Requested size: 207.27386pt x 139.5209pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5]
+<images/creation_order_lifetimes.png, id=52, 433.62pt x 289.08pt>
+File: images/creation_order_lifetimes.png Graphic file (type png)
+<use images/creation_order_lifetimes.png>
+Package pdftex.def Info: images/creation_order_lifetimes.png  used on input lin
+e 159.
 (pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[4] (./final_paper.bbl) [5] [6 <./images/mean_std_degree.png> <./images/varianc
-e_degree.png>] [7 <./images/entropy_degree.png>] [8 <./images/num_components.pn
-g> <./images/largest_component.png>] [9 <./images/density.png> <./images/alg_co
-nn.png>] [10 <./images/harmonic_centrality.png>] [11 <./images/local_efficiency
-.png> <./images/global_efficiency.png>] [12 <./images/ent_mean_degree.png> <./i
-mages/ent_var_degree.png>] [13 <./images/ent_alg_conn.png> <./images/null_ent_m
-ean.png> <./images/null_ent_var.png> <./images/null_ent_alg_conn.png>] [14 <./i
-mages/creation_order_lifetimes.png> <./images/harmonic_lifetimes.png>] [15 <./i
-mages/in_degree_lifetimes.png> <./images/out_degree_lifetimes.png>] [16 <./imag
-es/volume_lifetimes.png>] (./final_paper.aux) ) 
+<images/harmonic_lifetimes.png, id=53, 433.62pt x 289.08pt>
+File: images/harmonic_lifetimes.png Graphic file (type png)
+<use images/harmonic_lifetimes.png>
+Package pdftex.def Info: images/harmonic_lifetimes.png  used on input line 166.
+
+(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/in_degree_lifetimes.png, id=54, 433.62pt x 289.08pt>
+File: images/in_degree_lifetimes.png Graphic file (type png)
+<use images/in_degree_lifetimes.png>
+Package pdftex.def Info: images/in_degree_lifetimes.png  used on input line 173
+.
+(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
+<images/out_degree_lifetimes.png, id=55, 433.62pt x 289.08pt>
+File: images/out_degree_lifetimes.png Graphic file (type png)
+<use images/out_degree_lifetimes.png>
+Package pdftex.def Info: images/out_degree_lifetimes.png  used on input line 17
+4.
+(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/volume_lifetimes.png, id=56, 433.62pt x 289.08pt>
+File: images/volume_lifetimes.png Graphic file (type png)
+<use images/volume_lifetimes.png>
+Package pdftex.def Info: images/volume_lifetimes.png  used on input line 181.
+(pdftex.def)             Requested size: 325.2142pt x 216.80946pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(./final_paper.bbl [6])
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(./publishedcode.py
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 1.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1.
+
+Overfull \hbox (100.31812pt too wide) in paragraph at lines 25--26
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][] 
+ []
+
+[7]
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 33.
+
+Overfull \hbox (22.31732pt too wide) in paragraph at lines 39--40
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (10.3172pt too wide) in paragraph at lines 53--55
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (196.31909pt too wide) in paragraph at lines 57--58
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][] 
+ []
+
+[8]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 87.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 87.
+ [9]
+Overfull \hbox (10.3172pt too wide) in paragraph at lines 147--148
+[][][][][][][][][][][][][][][][][][] 
+ []
+
+[10] [11] [12]
+LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 272.
+
+Overfull \hbox (22.31732pt too wide) in paragraph at lines 283--285
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[13] [14]
+Overfull \hbox (76.31787pt too wide) in paragraph at lines 365--366
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+[15]
+Overfull \hbox (130.31842pt too wide) in paragraph at lines 395--396
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (58.31769pt too wide) in paragraph at lines 401--402
+[][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (64.31775pt too wide) in paragraph at lines 406--407
+[][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (10.3172pt too wide) in paragraph at lines 413--414
+[][][][][][][][][][][][][][][] 
+ []
+
+[16]
+Overfull \hbox (46.31757pt too wide) in paragraph at lines 414--415
+[][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (52.31763pt too wide) in paragraph at lines 418--419
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+] 
+ []
+
+
+Overfull \hbox (22.31732pt too wide) in paragraph at lines 427--428
+[][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (148.3186pt too wide) in paragraph at lines 428--430
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (70.31781pt too wide) in paragraph at lines 433--434
+[][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (274.31989pt too wide) in paragraph at lines 434--435
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (16.31726pt too wide) in paragraph at lines 435--436
+[][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (370.32086pt too wide) in paragraph at lines 447--448
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (442.3216pt too wide) in paragraph at lines 452--453
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[17]
+Overfull \hbox (322.32037pt too wide) in paragraph at lines 457--458
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (346.32062pt too wide) in paragraph at lines 462--463
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (46.31757pt too wide) in paragraph at lines 467--468
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[18] [19] [20] [21] [22] [23] [24]
+Overfull \hbox (64.31775pt too wide) in paragraph at lines 763--764
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (46.31757pt too wide) in paragraph at lines 772--773
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (64.31775pt too wide) in paragraph at lines 773--774
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (64.31775pt too wide) in paragraph at lines 782--783
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (64.31775pt too wide) in paragraph at lines 783--784
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (40.3175pt too wide) in paragraph at lines 792--793
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (64.31775pt too wide) in paragraph at lines 793--794
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[25]
+Overfull \hbox (46.31757pt too wide) in paragraph at lines 802--803
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (64.31775pt too wide) in paragraph at lines 803--804
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (64.31775pt too wide) in paragraph at lines 813--814
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[26] [27]) [28] [29] [30 <./images/num_components.png> <./images/largest_compon
+ent.png>] [31 <./images/density.png> <./images/alg_conn.png>] [32 <./images/har
+monic_centrality.png>] [33 <./images/local_efficiency.png> <./images/global_eff
+iciency.png>] [34 <./images/ent_mean_degree.png> <./images/ent_var_degree.png>]
+[35 <./images/ent_alg_conn.png> <./images/null_ent_mean.png> <./images/null_ent
+_var.png> <./images/null_ent_alg_conn.png>] [36 <./images/creation_order_lifeti
+mes.png> <./images/harmonic_lifetimes.png>] [37 <./images/in_degree_lifetimes.p
+ng> <./images/out_degree_lifetimes.png>] [38 <./images/volume_lifetimes.png>]
+(./final_paper.aux) ) 
 Here is how much of TeX's memory you used:
- 3279 strings out of 494374
- 45497 string characters out of 6164953
- 126401 words of memory out of 5000000
- 6543 multiletter control sequences out of 15000+600000
+ 5328 strings out of 494587
+ 73132 string characters out of 6177759
+ 214543 words of memory out of 5000000
+ 8875 multiletter control sequences out of 15000+600000
  9553 words of font info for 34 fonts, out of 8000000 for 9000
- 350 hyphenation exceptions out of 8191
- 37i,8n,31p,1217b,239s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on final_paper.pdf (16 pages, 1875148 bytes).
+ 14 hyphenation exceptions out of 8191
+ 41i,9n,43p,1238b,1808s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmssi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmti10.pfb>
+Output written on final_paper.pdf (38 pages, 1914985 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 77 compressed objects within 1 object stream
+ 230 PDF objects out of 1000 (max. 8388607)
+ 130 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  111 words of extra memory for PDF output out of 10000 (max. 10000000)
 

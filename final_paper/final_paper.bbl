@@ -1,5 +1,27 @@
 \begin{thebibliography}{1}
 
+\bibitem{crooks_entropy_1999}
+Gavin~E. Crooks.
+\newblock The {Entropy} {Production} {Fluctuation} {Theorem} and the
+  {Nonequilibrium} {Work} {Relation} for {Free} {Energy} {Differences}.
+\newblock {\em Physical Review E}, 60(3):2721--2726, September 1999.
+\newblock arXiv: cond-mat/9901352.
+
+\bibitem{strogatz_exploring_2001}
+Steven~H. Strogatz.
+\newblock Exploring complex networks.
+\newblock {\em Nature}, 410(6825):268--276, March 2001.
+
+\bibitem{gates_control_2016}
+Alexander~J. Gates and Luis~M. Rocha.
+\newblock Control of complex networks requires both structure and dynamics.
+\newblock {\em Scientific Reports}, 6(1), July 2016.
+
+\bibitem{Williams2000}
+Richard~J. Williams and Neo~D. Martinez.
+\newblock Simple rules yield complex food webs.
+\newblock {\em Nature}, 404(6774):180--183, 2000.
+
 \bibitem{bassett_adaptive_2006}
 Danielle~S. Bassett, Andreas Meyer-Lindenberg, Sophie Achard, Thomas Duke, and
   Edward Bullmore.
