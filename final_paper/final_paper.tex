@@ -9,6 +9,7 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage{hyperref}
+\usepackage{tabularx}
 
 \title{Emergence and Collapse in Dissipative Dynamical Systems \\ \textnormal{Spring 2019 Network Science Project}}
 \author{S. Migirditch, TF. Varley}
@@ -23,6 +24,59 @@
 	
 	The model and all analyses where programmed in Python 3.6, using the NetworkX package, version 2.2, as provided by Anaconda. The complete code needed for reproduction is included in Appendix 1. The most recent version and any features added since publication can be found on \href{https://github.com/Migirditchsv/DissapativeNetworks.git}{Github}
 	
+	\subsection{Elements of the Model}
+	The model takes the form of a time evolving directed graph without self-loops. All time evolution is done with a simple Euler step method and updates are random asynchronous. There are two classes of nodes: resource nodes and producer nodes. While the code is highly configurable, by default each producer is initialized by computing the following attributes:
+	
+	\begin{table}[H]
+		\begin{center}
+		\caption {Individual Producer Attributes:} \label{tab:title} 
+		\begin{tabular}{|p{0.5\textwidth}|p{0.5\textwidth}|}
+			\cline{1-2}
+			\textbf{Attribute Name:} & \textbf{Attribute Effect:}  \\ \cline{1-2}
+			Index & A unique identifier for accessing a producer node. Nodes are sequentially created and labeled so the index also informs on the creation order of nodes. Indexes are integers starting from 1. \\ \cline{1-2}
+			Volume & The amount of rescource currently in the node. This is updated on each time step. If this value drops below a set threshold, the node and its links are removed from the graph. Producers are initialized with a volume of 1.0  \\ \cline{1-2}
+			Niche Score & A double precision number that determines which nodes may consume from this individual \\ \cline{1-2}
+			Niche Lower/Upper Bound & A given node i may consume from another node j if the niche score of j is between the lower and upper niche bounds of i.\\ \cline{1-2}
+			\cline{1-2}
+		\end{tabular}
+		\end{center}
+	\end{table}
+
+	Additionally, all producers share some global properties defined in table 2:
+	
+	\begin{table}[H]
+	\begin{center}
+		\caption {Global Producer Attributes:} \label{tab:title} 
+		\begin{tabular}{|p{0.5\textwidth}|p{0.5\textwidth}|}
+			\cline{1-2}
+			\textbf{Attribute Name:} & \textbf{Attribute Effect:}  \\ \cline{1-2}
+			Metabolic Ratio = 0.005 & A value on the interval $[0,1)$ which is multiplied by a nodes volume and then removed from its volume on each time step. \\ \cline{1-2}
+			Consumption Ratio = 0.01 &  A value on the interval $[0,1)$ which is multiplied by a nodes volume. The node will attempt to consume the resulting amount of resource on the next time step. \\ \cline{1-2}
+			Death Limit = 0.01 & If any producer's volume falls below this value, it is removed from the graph. \\ \cline{1-2}
+		\end{tabular}
+	\end{center}
+\end{table}
+	
+	Resource nodes have only the property of a niche score of zero, an index and a volume which was initialized to $10^8$.
+	
+	\subsection{Initialization}
+	
+	In a warm up phase before the Euler integration begins, a single resource node is initiated with an index of zero. Then a seed population of nine producers are initialized. They are different from other producers only in that their niche low bound is set to zero and they are forcibly connected to the resource node.
+	
+	\subsection{Node Creation and Targeting}
+	
+	On each time step a check is first performed to see if the resource node still exists. If there is still a resource node, a number of new producers are created according to the function $$ceil( population * growth\_rate )$$ where $population$ is the number of producers currently in the graph. This ensures at least one node is created on each time step and after $\frac{population}{growth\_rate}>1$ an exponential growth phase is entered. It is between this time step and the point at which the resource node is exhausted that the first set of interesting dynamics occurs. 
+	When a node i is initialized, a search is run over all nodes within the niche range of i. The node that exists within this range and has the largest value of the target score
+	$$target\_score_j = \frac{volume_j}{in\_degree_j}$$
+	is selected and a link is created from node i to node j. Parallel edges are not allowed, but anti-parallel edges are. On each time step, if there are less than $seed\_number=9$ producer nodes attached to the resource (and the resource still exists), randomly selected producer nodes are forcibly connected to the resource node. This stabilizing feature tends to be activated infrequently and is only observed early on in the constant growth phase of warm up. It does not seem to effect long term dynamics significantly. 
+	
+	\subsection{Producer Metabolism, Consumption and Re-Targeting}
+	
+	The second event to occur on each time step centers on resource consumption. The existing producers are randomly iterated through. For each selected node i the metabolic cost is computed as
+	$$metabolic\_cost_i = metabolic\_ratio * volume_i.$$
+	The metabolic cost is subtracted from the volume. If the resulting volume is less than the death limit the node and its edges are removed from the graph and a new node is selected. If the node survives the metabolic step, its consumption quota is computed as
+	$$consumption\_quota_i = consumption\_ratio * volume_i.$$
+	Node i attempts to remove $\frac{consumption\_quota}{target\_number}$ units of resource from the volume of each of the $target\_number$ nodes in its outgoing edge list. If a target has less than this amount of volume, however much resource the target has is moved into node i and the target is removed from the graph. If node i fails to consume its full resource quota it attempts to add a new outgoing edge according to the same targeting procedure described in Node Creation and Targeting. 
 	
 	\section{Analyses}
 	
@@ -204,5 +258,5 @@
 	\bibliography{Dissipative_Structures.bib}
 	
 	\section{Appendix 1: Code}
-	\lstinputlisting[language=Python]{"publishedcode.py"}
+	%\lstinputlisting[language=Python]{"publishedcode.py"}
 \end{document}
